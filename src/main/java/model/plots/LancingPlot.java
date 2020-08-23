@@ -1,4 +1,7 @@
-package model;
+package model.plots;
+
+import model.Border;
+import model.Owner;
 
 public class LancingPlot extends AbstractPlot {
     long rocketSize;

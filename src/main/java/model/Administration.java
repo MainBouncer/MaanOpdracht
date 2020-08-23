@@ -2,6 +2,7 @@ package model;
 
 import enums.Crop;
 import enums.Mineral;
+import model.plots.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

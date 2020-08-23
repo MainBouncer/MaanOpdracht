@@ -1,6 +1,8 @@
-package model;
+package model.plots;
 
 import enums.Crop;
+import model.Border;
+import model.Owner;
 
 
 public class FarmingPlot extends AbstractPlot {

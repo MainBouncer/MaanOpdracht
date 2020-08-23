@@ -1,8 +1,8 @@
-package model;
+package model.plots;
 
 import enums.Mineral;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import model.Border;
+import model.Owner;
 
 public class MiningPlot extends AbstractPlot {
     Mineral mineral;

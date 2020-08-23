@@ -1,5 +1,7 @@
 package model;
 
+import model.plots.AbstractPlot;
+
 import java.time.ZonedDateTime;
 
 public class Transfer {

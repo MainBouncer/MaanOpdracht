@@ -1,7 +1,7 @@
-package model;
+package model.plots;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import model.Border;
+import model.Owner;
 
 
 public class WaterPlot extends AbstractPlot {
