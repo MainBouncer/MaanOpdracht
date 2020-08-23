@@ -25,6 +25,10 @@ public class Administration {
         createBorders();
         createPlots();
         abstractPlots.forEach(this::createTransfers);
+        abstractPlots.forEach(ap -> {
+            Owner owner = ap.getOwner();
+            owner.addPlot(ap);
+        });
     }
 
     private void createPlots() {
