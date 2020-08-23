@@ -1,9 +1,14 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class Border {
-    List<Long> coordinates;
+    private List<Long> coordinates;
 
     public Border(List<Long> coordinates) {
         this.coordinates = coordinates;

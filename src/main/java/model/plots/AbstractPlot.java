@@ -1,15 +1,19 @@
 package model.plots;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.Border;
 import model.Owner;
 
+@Getter
+@Setter
 public abstract class AbstractPlot {
-    long size;
-    long id;
-    String location;
-    Border border;
-    Owner owner;
-    boolean sellable;
+    private long size;
+    private long id;
+    private String location;
+    private Border border;
+    private Owner owner;
+    private boolean sellable;
 
     public AbstractPlot(long size, long id, String location, Border border, Owner owner, boolean sellable) {
         this.size = size;

@@ -1,10 +1,14 @@
 package model.plots;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.Border;
 import model.Owner;
 
+@Getter
+@Setter
 public class LancingPlot extends AbstractPlot {
-    long rocketSize;
+    private long rocketSize;
 
     public LancingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long rocketSize) {
         super(size, id, location, border, owner, sellable);
