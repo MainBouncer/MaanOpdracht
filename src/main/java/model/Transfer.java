@@ -1,5 +1,6 @@
 package model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import model.plots.AbstractPlot;
@@ -8,6 +9,7 @@ import java.time.ZonedDateTime;
 
 @Getter
 @Setter
+@Builder
 public class Transfer {
 
     private long id;

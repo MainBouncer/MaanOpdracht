@@ -5,9 +5,12 @@ import enums.Mineral;
 import lombok.Getter;
 import model.plots.*;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 @Getter
 public class Administration {
@@ -15,11 +18,13 @@ public class Administration {
     private List<AbstractPlot> abstractPlots = new ArrayList<>();
     private List<Owner> owners = new ArrayList<>();
     private List<Border> borders = new ArrayList<>();
+    private List<Transfer> transfers = new ArrayList<>();
 
     public Administration() {
         createOwners();
         createBorders();
         createPlots();
+        abstractPlots.forEach(this::createTransfers);
     }
 
     private void createPlots() {
@@ -71,4 +76,17 @@ public class Administration {
         owners.add(new Owner("Vatican city"));
     }
 
+    private void createTransfers(AbstractPlot ap) {
+        int upperLimit = new Random().nextInt(20);
+        ZonedDateTime now = ZonedDateTime.now();
+        IntStream.range(0, upperLimit).forEach(i -> {
+            Transfer transfer = Transfer.builder()
+                    .plot(ap)
+                    .oldOwner(owners.get(i % owners.size()))
+                    .newOwner(owners.get((i + 1) % owners.size()))
+                    .date(now.minusDays(i))
+                    .build();
+            transfers.add(transfer);
+        });
+    }
 }
