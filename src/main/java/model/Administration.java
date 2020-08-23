@@ -17,22 +17,12 @@ public class Administration {
     private List<Border> borders = new ArrayList<>();
 
     public Administration() {
-        createData();
+        createOwners();
+        createBorders();
+        createPlots();
     }
 
-    private void createData() {
-        owners.add(new Owner("China"));
-        owners.add(new Owner("USA"));
-        owners.add(new Owner("Russia"));
-        owners.add(new Owner("Netherlands"));
-        owners.add(new Owner("Vatican city"));
-
-        borders.add(new Border(Arrays.asList(1L, 2L, 3L, 4L, 5L)));
-        borders.add(new Border(Arrays.asList(1111L, 2222L, 3L, 4L, 5L)));
-        borders.add(new Border(Arrays.asList(1111111L, 22L, 3L, 4L, 5L)));
-        borders.add(new Border(Arrays.asList(111111111L, 2222L, 3L, 4L, 5L)));
-        borders.add(new Border(Arrays.asList(111111L, 22222L, 3L, 4L, 5L)));
-
+    private void createPlots() {
         abstractPlots
                 .add(new FarmingPlot(125, 1, "LocationFarmA", borders.get(1), owners.get(1), true, Crop.CUCUMBER, 50));
         abstractPlots
@@ -63,8 +53,22 @@ public class Administration {
         abstractPlots.add(new WaterPlot(32355, 16, "WaterPlotC", borders.get(1), owners.get(2), true, 131200));
         abstractPlots.add(new WaterPlot(32545, 17, "WaterPlotD", borders.get(2), owners.get(3), true, 131200));
         abstractPlots.add(new WaterPlot(32555, 18, "WaterPlotE", borders.get(3), owners.get(4), true, 131200));
+    }
 
+    private void createBorders() {
+        borders.add(new Border(Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+        borders.add(new Border(Arrays.asList(1111L, 2222L, 3L, 4L, 5L)));
+        borders.add(new Border(Arrays.asList(1111111L, 22L, 3L, 4L, 5L)));
+        borders.add(new Border(Arrays.asList(111111111L, 2222L, 3L, 4L, 5L)));
+        borders.add(new Border(Arrays.asList(111111L, 22222L, 3L, 4L, 5L)));
+    }
 
+    private void createOwners() {
+        owners.add(new Owner("China"));
+        owners.add(new Owner("USA"));
+        owners.add(new Owner("Russia"));
+        owners.add(new Owner("Netherlands"));
+        owners.add(new Owner("Vatican city"));
     }
 
 }
