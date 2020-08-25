@@ -1,5 +1,6 @@
 import model.Administration;
 import model.plots.AbstractPlot;
+import model.plots.FarmingPlot;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ public class Start {
 
         List<AbstractPlot> plotsSoldUnderAverage = administration.getPlotsSoldUnderAverage();
         System.out.println("There are " + plotsSoldUnderAverage.size() + " plots sold under average.");
+
+        List<FarmingPlot> farmingPlotsWithGoodProduction = administration.getFarmingPlotsWithGoodProduction();
+        System.out.println("There are " + farmingPlotsWithGoodProduction.size() + " with production over average.");
     }
 
 }

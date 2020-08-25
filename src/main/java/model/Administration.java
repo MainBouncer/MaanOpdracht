@@ -52,6 +52,30 @@ public class Administration {
         return (int) transfers.stream().filter(transfer -> plot.equals(transfer.getPlot())).count();
     }
 
+    public List<FarmingPlot> getFarmingPlotsWithGoodProduction() {
+        double averageCropValue = getAverageCropValue();
+        return abstractPlots.stream()
+                .filter(plot -> plot instanceof FarmingPlot)
+                .map(plot -> (FarmingPlot) plot)
+                .filter(plot -> plot.getCropPerYear() > averageCropValue)
+                .collect(Collectors.toList());
+    }
+
+    private double getAverageCropValue() {
+        double average = abstractPlots.stream()
+                .filter(plot -> plot instanceof FarmingPlot)
+                .map(plot -> (FarmingPlot) plot)
+                .map(plot -> {
+                    System.out.println("Plot " + plot.getId() + " had value " + plot.getCropPerYear());
+                    return plot.getCropPerYear();
+                })
+                .mapToLong(Long::longValue)
+                .average()
+                .orElse(0.0);
+        System.out.println("Average crop value is " + average);
+        return average;
+    }
+
     private void createPlots() {
         abstractPlots
                 .add(new FarmingPlot(125, 1, "LocationFarmA", borders.get(1), owners.get(1), true, Crop.CUCUMBER, 50));
