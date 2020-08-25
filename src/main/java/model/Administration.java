@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Getter
@@ -29,6 +30,26 @@ public class Administration {
             Owner owner = ap.getOwner();
             owner.addPlot(ap);
         });
+    }
+
+    public List<AbstractPlot> getPlotsSoldOverAverage() {
+        int averageSold = transfers.size() / abstractPlots.size();
+        System.out.println("Average sold: " + averageSold);
+        return abstractPlots.stream()
+                .filter(plot -> getAmountOfTransfersWithPlot(plot) > averageSold)
+                .collect(Collectors.toList());
+    }
+
+    public List<AbstractPlot> getPlotsSoldUnderAverage() {
+        int averageSold = transfers.size() / abstractPlots.size();
+        System.out.println("Average sold: " + averageSold);
+        return abstractPlots.stream()
+                .filter(plot -> getAmountOfTransfersWithPlot(plot) < averageSold)
+                .collect(Collectors.toList());
+    }
+
+    private int getAmountOfTransfersWithPlot(AbstractPlot plot) {
+        return (int) transfers.stream().filter(transfer -> plot.equals(transfer.getPlot())).count();
     }
 
     private void createPlots() {
