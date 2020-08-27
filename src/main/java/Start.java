@@ -1,9 +1,11 @@
+import enums.Crop;
 import model.Administration;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Start {
 //
@@ -43,6 +45,9 @@ public class Start {
 
         int amountFarmingPlots = administration.getAmountOfPlotsOfType(FarmingPlot.class);
         System.out.println("There are " + amountFarmingPlots + " farming plots.");
+
+        Map<Crop, Double> averageCropValue = administration.getAverageCropsValue();
+        System.out.println("");
     }
 
 }

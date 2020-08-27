@@ -39,8 +39,6 @@ public class Administration {
     }
 
 
-    //    TODO: De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
-
     public Map<Crop, Double> getAverageCropsValue() {
 
         Map<Crop, List<FarmingPlot>> collect = abstractPlots.stream()
@@ -48,7 +46,14 @@ public class Administration {
                 .map(plot -> (FarmingPlot) plot)
                 .collect(Collectors.groupingBy(FarmingPlot::getCrop));
 
+        Map<Crop, Double> averageCropValue = new HashMap<>();
 
+        for(Crop crop: Crop.values()) {
+            double average = collect.get(crop).stream().map(FarmingPlot::getCropPerYear).mapToLong(Long::longValue).average().orElse(0.0);
+            averageCropValue.put(crop, average);
+        }
+
+        return  averageCropValue;
     }
 
     public int getAmountOfPlotsOfType(Class<? extends AbstractPlot> clazz) {
