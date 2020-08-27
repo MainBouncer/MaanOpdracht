@@ -40,7 +40,6 @@ public class Administration {
 
 
     public Map<Crop, Double> getAverageCropsValue() {
-
         Map<Crop, List<FarmingPlot>> collect = abstractPlots.stream()
                 .filter(plot -> plot instanceof FarmingPlot)
                 .map(plot -> (FarmingPlot) plot)
@@ -48,12 +47,12 @@ public class Administration {
 
         Map<Crop, Double> averageCropValue = new HashMap<>();
 
-        for(Crop crop: Crop.values()) {
-            double average = collect.get(crop).stream().map(FarmingPlot::getCropPerYear).mapToLong(Long::longValue).average().orElse(0.0);
+        for (Crop crop : Crop.values()) {
+            double average = collect.get(crop).stream().map(FarmingPlot::getCropPerYear).mapToLong(Long::longValue)
+                    .average().orElse(0.0);
             averageCropValue.put(crop, average);
         }
-
-        return  averageCropValue;
+        return averageCropValue;
     }
 
     public int getAmountOfPlotsOfType(Class<? extends AbstractPlot> clazz) {
@@ -108,10 +107,7 @@ public class Administration {
         double average = abstractPlots.stream()
                 .filter(plot -> plot instanceof FarmingPlot)
                 .map(plot -> (FarmingPlot) plot)
-                .map(plot -> {
-                    System.out.println("Plot " + plot.getId() + " had value " + plot.getCropPerYear());
-                    return plot.getCropPerYear();
-                })
+                .map(FarmingPlot::getCropPerYear)
                 .mapToLong(Long::longValue)
                 .average()
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
