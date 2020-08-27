@@ -80,7 +80,7 @@ public class Administration {
                 })
                 .mapToLong(Long::longValue)
                 .average()
-                .orElse(0.0);
+                .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
         System.out.println("Average crop value is " + average);
         return average;
     }
