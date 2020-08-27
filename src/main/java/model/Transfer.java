@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import model.plots.AbstractPlot;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -15,7 +16,7 @@ public class Transfer {
     private long id;
     private Owner newOwner;
     private Owner oldOwner;
-    private ZonedDateTime date;
+    private LocalDate date;
     private AbstractPlot plot;
 
 }
