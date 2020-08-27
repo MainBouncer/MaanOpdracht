@@ -1,5 +1,5 @@
+import Administration.Administration;
 import enums.Crop;
-import model.Administration;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
 import model.plots.LivingPlot;
