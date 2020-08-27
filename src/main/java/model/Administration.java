@@ -86,22 +86,31 @@ public class Administration {
     }
 
     private void createPlots() {
+        createFarmingPlots();
+        createLancingPlots();
+        createLivingPlots();
+        createminingPlots();
+        createWaterPlots();
+    }
+
+    private void createFarmingPlots() {
         abstractPlots
                 .add(new FarmingPlot(125, 1, "LocationFarmA", borders.get(1), owners.get(1), true, Crop.CUCUMBER, 50));
         abstractPlots
                 .add(new FarmingPlot(3125, 2, "LocationFarmB", borders.get(3), owners.get(4), true, Crop.LETTUCE, 500));
         abstractPlots
                 .add(new FarmingPlot(3435, 3, "LocationFarmC", borders.get(0), owners.get(4), true, Crop.RADISH, 100));
+    }
 
-        abstractPlots.add(new LancingPlot(3435, 4, "LocationLancingPlotA", borders.get(1), owners.get(1), true, 100));
-        abstractPlots.add(new LancingPlot(4225, 5, "LocationLancingPlotB", borders.get(0), owners.get(1), true, 50));
-        abstractPlots.add(new LancingPlot(6565, 6, "LocationLancingPlotC", borders.get(3), owners.get(4), true, 500));
-        abstractPlots.add(new LancingPlot(875, 7, "LocationLancingPlotD", borders.get(1), owners.get(1), true, 100));
+    private void createWaterPlots() {
+        abstractPlots.add(new WaterPlot(13255, 14, "WaterPlotA", borders.get(1), owners.get(0), true, 131200));
+        abstractPlots.add(new WaterPlot(32255, 15, "WaterPlotB", borders.get(0), owners.get(1), true, 131200));
+        abstractPlots.add(new WaterPlot(32355, 16, "WaterPlotC", borders.get(1), owners.get(2), true, 131200));
+        abstractPlots.add(new WaterPlot(32545, 17, "WaterPlotD", borders.get(2), owners.get(3), true, 131200));
+        abstractPlots.add(new WaterPlot(32555, 18, "WaterPlotE", borders.get(3), owners.get(4), true, 131200));
+    }
 
-        abstractPlots.add(new LivingPlot(325, 8, "LivingPlotA", borders.get(1), owners.get(1), true, 50));
-        abstractPlots.add(new LivingPlot(225, 9, "LivingPlotB", borders.get(3), owners.get(4), true, 500));
-        abstractPlots.add(new LivingPlot(115, 10, "LivingPlotC", borders.get(0), owners.get(4), true, 100));
-
+    private void createminingPlots() {
         abstractPlots.add(new MiningPlot(325, 11, "MiningPlotA", borders.get(1), owners
                 .get(2), true, Mineral.PALLADIUM, 100));
         abstractPlots
@@ -110,12 +119,19 @@ public class Administration {
                 .get(4), true, Mineral.PLATINUM, 103120));
         abstractPlots.add(new MiningPlot(3255, 14, "MiningPlotD", borders.get(1), owners
                 .get(0), true, Mineral.REGOLITH, 131200));
+    }
 
-        abstractPlots.add(new WaterPlot(13255, 14, "WaterPlotA", borders.get(1), owners.get(0), true, 131200));
-        abstractPlots.add(new WaterPlot(32255, 15, "WaterPlotB", borders.get(0), owners.get(1), true, 131200));
-        abstractPlots.add(new WaterPlot(32355, 16, "WaterPlotC", borders.get(1), owners.get(2), true, 131200));
-        abstractPlots.add(new WaterPlot(32545, 17, "WaterPlotD", borders.get(2), owners.get(3), true, 131200));
-        abstractPlots.add(new WaterPlot(32555, 18, "WaterPlotE", borders.get(3), owners.get(4), true, 131200));
+    private void createLivingPlots() {
+        abstractPlots.add(new LivingPlot(325, 8, "LivingPlotA", borders.get(1), owners.get(1), true, 50));
+        abstractPlots.add(new LivingPlot(225, 9, "LivingPlotB", borders.get(3), owners.get(4), true, 500));
+        abstractPlots.add(new LivingPlot(115, 10, "LivingPlotC", borders.get(0), owners.get(4), true, 100));
+    }
+
+    private void createLancingPlots() {
+        abstractPlots.add(new LancingPlot(3435, 4, "LocationLancingPlotA", borders.get(1), owners.get(1), true, 100));
+        abstractPlots.add(new LancingPlot(4225, 5, "LocationLancingPlotB", borders.get(0), owners.get(1), true, 50));
+        abstractPlots.add(new LancingPlot(6565, 6, "LocationLancingPlotC", borders.get(3), owners.get(4), true, 500));
+        abstractPlots.add(new LancingPlot(875, 7, "LocationLancingPlotD", borders.get(1), owners.get(1), true, 100));
     }
 
     private void createBorders() {
