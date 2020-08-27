@@ -6,10 +6,7 @@ import lombok.Getter;
 import model.plots.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -39,6 +36,19 @@ public class Administration {
             INSTANCE = new Administration();
         }
         return INSTANCE;
+    }
+
+
+    //    TODO: De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
+
+    public Map<Crop, Double> getAverageCropsValue() {
+
+        Map<Crop, List<FarmingPlot>> collect = abstractPlots.stream()
+                .filter(plot -> plot instanceof FarmingPlot)
+                .map(plot -> (FarmingPlot) plot)
+                .collect(Collectors.groupingBy(FarmingPlot::getCrop));
+
+
     }
 
     public int getAmountOfPlotsOfType(Class<? extends AbstractPlot> clazz) {
