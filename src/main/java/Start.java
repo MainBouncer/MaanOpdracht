@@ -22,7 +22,8 @@ public class Start {
 
     // Deel 3
 //    TODO: De VN wil de administratie van delfstoffen verder uitwerken. De enum delfstof wordt vervangen door een immutable object.
-//    TODO: Dit Object bevat gegevens over bijv. elementnaam, elementnummer, stofdichtheid, radioactief. Voor het maken van deze objecten hebben we een klasse DelfstofBuilder nodig.
+//    TODO: Dit Object bevat gegevens over bijv. elementnaam, elementnummer, stofdichtheid, radioactief.
+//     Voor het maken van deze objecten hebben we een klasse DelfstofBuilder nodig.
 //
 //    Maanadministratie moet singleton worden.
 //
