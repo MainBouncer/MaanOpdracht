@@ -5,6 +5,7 @@ import enums.Mineral;
 import lombok.Getter;
 import model.plots.*;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +41,18 @@ public class Administration {
         }
         return INSTANCE;
     }
+
+    //    TODO: Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
+    public List<AbstractPlot> getPlotsSoldPerPeriod(LocalDate startDate, LocalDate endDate) {
+        transfers.stream().filter(transfer -> dateIsInPeriod(startDate, endDate, transfer)).collect(Collectors.toList())
+                .map(transfers -> abstractPlots);
+    }
+
+    private boolean dateIsInPeriod(LocalDate startDate, LocalDate endDate, Transfer transfer) {
+        return (transfer.getDate().isAfter(startDate) || transfer.getDate().equals(startDate)) &&
+                (transfer.getDate().isBefore(endDate) || transfer.getDate().equals(endDate));
+    }
+
 
     public List<AbstractPlot> getPlotsSoldOverAverage() {
         int averageSold = transfers.size() / abstractPlots.size();
