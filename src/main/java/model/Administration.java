@@ -41,6 +41,12 @@ public class Administration {
         return INSTANCE;
     }
 
+    public int getAmountOfPlotsOfType(Class<? extends AbstractPlot> clazz) {
+        return (int) abstractPlots.stream()
+                .filter(clazz::isInstance)
+                .count();
+    }
+
     public long getPlotsSoldPerPeriod(LocalDate startDate, LocalDate endDate) {
         return transfers.stream().filter(transfer -> dateIsInPeriod(startDate, endDate, transfer))
                 .map(Transfer::getPlot)

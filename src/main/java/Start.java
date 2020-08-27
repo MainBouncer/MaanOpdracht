@@ -8,8 +8,8 @@ import java.util.List;
 public class Start {
 //
     // Deel 2
-//    TODO: Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
-//    TODO: Een methode om het aantal delfstof percelen en het aantal gewas percelen te berekenen.
+//    Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
+//    Een methode om het aantal delfstof percelen en het aantal gewas percelen te berekenen.
 //    TODO: De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
 //    TODO: Het aantal inwoners ouder dan 30 jaar per woonperceel moet opgevraagd worden.
 //
@@ -38,7 +38,11 @@ public class Start {
         List<FarmingPlot> farmingPlotsWithGoodProduction = administration.getFarmingPlotsWithGoodProduction();
         System.out.println("There are " + farmingPlotsWithGoodProduction.size() + " with production over average.");
 
-        System.out.println("There are " + administration.getPlotsSoldPerPeriod(LocalDate.now().minusDays(3), LocalDate.now()) + " plots sold in this period");
+        long plotsSoldPerPeriod = administration.getPlotsSoldPerPeriod(LocalDate.now().minusDays(3), LocalDate.now());
+        System.out.println("There are " + plotsSoldPerPeriod + " plots sold in this period.");
+
+        int amountFarmingPlots = administration.getAmountOfPlotsOfType(FarmingPlot.class);
+        System.out.println("There are " + amountFarmingPlots + " farming plots.");
     }
 
 }
