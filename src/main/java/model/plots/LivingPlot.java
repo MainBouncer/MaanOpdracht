@@ -1,5 +1,6 @@
 package model.plots;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import model.Border;
@@ -12,6 +13,7 @@ import java.util.List;
 public class LivingPlot extends AbstractPlot {
     private List<Integer> ages;
 
+    @Builder
     public LivingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, List<Integer> ages) {
         super(size, id, location, border, owner, sellable);
         this.ages = ages;

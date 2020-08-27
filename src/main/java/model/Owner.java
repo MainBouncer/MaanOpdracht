@@ -1,5 +1,6 @@
 package model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import model.plots.AbstractPlot;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 public class Owner {
     private String name;
     private Set<AbstractPlot> ownedPlots;
