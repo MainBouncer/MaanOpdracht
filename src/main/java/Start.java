@@ -18,7 +18,7 @@ public class Start {
 //
 //
 //    TODO: Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn.
-//    Om te laten zien dat het werkt graag de rapportage uitdraaien per maand (mag console applicatie zijn met output van de rapoortage in het console).
+//    Om te laten zien dat het werkt graag de rapportage uitdraaien per maand (mag console applicatie zijn met output van de rapportage in het console).
 
     // Deel 3
 //    TODO: De VN wil de administratie van delfstoffen verder uitwerken. De enum delfstof wordt vervangen door een immutable object.
