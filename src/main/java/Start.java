@@ -2,6 +2,7 @@ import model.Administration;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Start {
@@ -36,6 +37,8 @@ public class Start {
 
         List<FarmingPlot> farmingPlotsWithGoodProduction = administration.getFarmingPlotsWithGoodProduction();
         System.out.println("There are " + farmingPlotsWithGoodProduction.size() + " with production over average.");
+
+        System.out.println("There are " + administration.getPlotsSoldPerPeriod(LocalDate.now().minusDays(3), LocalDate.now()) + " plots sold in this period");
     }
 
 }

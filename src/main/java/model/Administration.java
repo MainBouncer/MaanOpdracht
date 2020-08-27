@@ -42,10 +42,11 @@ public class Administration {
         return INSTANCE;
     }
 
-    //    TODO: Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
-    public List<AbstractPlot> getPlotsSoldPerPeriod(LocalDate startDate, LocalDate endDate) {
-        transfers.stream().filter(transfer -> dateIsInPeriod(startDate, endDate, transfer)).collect(Collectors.toList())
-                .map(transfers -> abstractPlots);
+    public long getPlotsSoldPerPeriod(LocalDate startDate, LocalDate endDate) {
+        return transfers.stream().filter(transfer -> dateIsInPeriod(startDate, endDate, transfer))
+                .map(transfer -> transfer.getPlot())
+                .collect(Collectors.toSet())
+                .size();
     }
 
     private boolean dateIsInPeriod(LocalDate startDate, LocalDate endDate, Transfer transfer) {
@@ -165,7 +166,7 @@ public class Administration {
 
     private void createTransfers(AbstractPlot ap) {
         int upperLimit = new Random().nextInt(20);
-        ZonedDateTime now = ZonedDateTime.now();
+        LocalDate now = LocalDate.now();
         IntStream.range(0, upperLimit).forEach(i -> {
             Transfer transfer = Transfer.builder()
                     .plot(ap)
