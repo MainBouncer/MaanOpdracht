@@ -6,7 +6,6 @@ import lombok.Getter;
 import model.plots.*;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +43,7 @@ public class Administration {
 
     public long getPlotsSoldPerPeriod(LocalDate startDate, LocalDate endDate) {
         return transfers.stream().filter(transfer -> dateIsInPeriod(startDate, endDate, transfer))
-                .map(transfer -> transfer.getPlot())
+                .map(Transfer::getPlot)
                 .collect(Collectors.toSet())
                 .size();
     }
@@ -103,49 +102,74 @@ public class Administration {
         createFarmingPlots();
         createLancingPlots();
         createLivingPlots();
-        createminingPlots();
+        createMiningPlots();
         createWaterPlots();
     }
 
     private void createFarmingPlots() {
-        abstractPlots
-                .add(new FarmingPlot(125, 1, "LocationFarmA", borders.get(1), owners.get(1), true, Crop.CUCUMBER, 50));
-        abstractPlots
-                .add(new FarmingPlot(3125, 2, "LocationFarmB", borders.get(3), owners.get(4), true, Crop.LETTUCE, 500));
-        abstractPlots
-                .add(new FarmingPlot(3435, 3, "LocationFarmC", borders.get(0), owners.get(4), true, Crop.RADISH, 100));
+        Random random = new Random();
+        for (Crop c : Crop.values()) {
+            IntStream.range(1, random.nextInt(25)).forEach(i -> {
+                int id = abstractPlots.size() + 1;
+                FarmingPlot farm = new FarmingPlot(random.nextInt(1000), id, "Farm", borders
+                        .get(random.nextInt(borders.size())), owners.get(random.nextInt(owners.size())),
+                        true, c, random.nextInt(1000));
+                abstractPlots.add(farm);
+            });
+        }
     }
 
     private void createWaterPlots() {
-        abstractPlots.add(new WaterPlot(13255, 14, "WaterPlotA", borders.get(1), owners.get(0), true, 131200));
-        abstractPlots.add(new WaterPlot(32255, 15, "WaterPlotB", borders.get(0), owners.get(1), true, 131200));
-        abstractPlots.add(new WaterPlot(32355, 16, "WaterPlotC", borders.get(1), owners.get(2), true, 131200));
-        abstractPlots.add(new WaterPlot(32545, 17, "WaterPlotD", borders.get(2), owners.get(3), true, 131200));
-        abstractPlots.add(new WaterPlot(32555, 18, "WaterPlotE", borders.get(3), owners.get(4), true, 131200));
+        abstractPlots.add(new WaterPlot(13255, abstractPlots.size() + 1, "WaterPlotA", borders.get(1), owners
+                .get(0), true, 131200));
+        abstractPlots.add(new WaterPlot(32255, abstractPlots.size() + 1, "WaterPlotB", borders.get(0), owners
+                .get(1), true, 131200));
+        abstractPlots.add(new WaterPlot(32355, abstractPlots.size() + 1, "WaterPlotC", borders.get(1), owners
+                .get(2), true, 131200));
+        abstractPlots.add(new WaterPlot(32545, abstractPlots.size() + 1, "WaterPlotD", borders.get(2), owners
+                .get(3), true, 131200));
+        abstractPlots.add(new WaterPlot(32555, abstractPlots.size() + 1, "WaterPlotE", borders.get(3), owners
+                .get(4), true, 131200));
     }
 
-    private void createminingPlots() {
-        abstractPlots.add(new MiningPlot(325, 11, "MiningPlotA", borders.get(1), owners
-                .get(2), true, Mineral.PALLADIUM, 100));
-        abstractPlots
-                .add(new MiningPlot(1325, 12, "MiningPlotB", borders.get(3), owners.get(3), true, Mineral.GOLD, 32100));
-        abstractPlots.add(new MiningPlot(3325, 13, "MiningPlotC", borders.get(2), owners
-                .get(4), true, Mineral.PLATINUM, 103120));
-        abstractPlots.add(new MiningPlot(3255, 14, "MiningPlotD", borders.get(1), owners
-                .get(0), true, Mineral.REGOLITH, 131200));
+    private void createMiningPlots() {
+        Random random = new Random();
+        for (Mineral m : Mineral.values()) {
+            IntStream.range(1, random.nextInt(25)).forEach(i -> {
+                int id = abstractPlots.size() + 1;
+                new MiningPlot(random.nextInt(1000), id, "Mining", borders
+                        .get(random.nextInt(borders.size())), owners.get(random.nextInt(owners.size())),
+                        true, m, 100);
+            });
+        }
+        abstractPlots.add(new MiningPlot(325, 11, "MiningPlotA", borders.get(1),
+                owners.get(2), true, Mineral.PALLADIUM, 100));
+        abstractPlots.add(new MiningPlot(1325, 12, "MiningPlotB", borders.get(3),
+                owners.get(3), true, Mineral.GOLD, 32100));
+        abstractPlots.add(new MiningPlot(3325, 13, "MiningPlotC", borders.get(2),
+                owners.get(4), true, Mineral.PLATINUM, 103120));
+        abstractPlots.add(new MiningPlot(3255, 14, "MiningPlotD", borders.get(1),
+                owners.get(0), true, Mineral.REGOLITH, 131200));
     }
 
     private void createLivingPlots() {
-        abstractPlots.add(new LivingPlot(325, 8, "LivingPlotA", borders.get(1), owners.get(1), true, 50));
-        abstractPlots.add(new LivingPlot(225, 9, "LivingPlotB", borders.get(3), owners.get(4), true, 500));
-        abstractPlots.add(new LivingPlot(115, 10, "LivingPlotC", borders.get(0), owners.get(4), true, 100));
+        abstractPlots.add(new LivingPlot(325, abstractPlots.size() + 1, "LivingPlotA", borders.get(1),
+                owners.get(1), true, 50));
+        abstractPlots.add(new LivingPlot(225, abstractPlots.size() + 1, "LivingPlotB", borders.get(3),
+                owners.get(4), true, 500));
+        abstractPlots.add(new LivingPlot(115, abstractPlots.size() + 1, "LivingPlotC", borders.get(0),
+                owners.get(4), true, 100));
     }
 
     private void createLancingPlots() {
-        abstractPlots.add(new LancingPlot(3435, 4, "LocationLancingPlotA", borders.get(1), owners.get(1), true, 100));
-        abstractPlots.add(new LancingPlot(4225, 5, "LocationLancingPlotB", borders.get(0), owners.get(1), true, 50));
-        abstractPlots.add(new LancingPlot(6565, 6, "LocationLancingPlotC", borders.get(3), owners.get(4), true, 500));
-        abstractPlots.add(new LancingPlot(875, 7, "LocationLancingPlotD", borders.get(1), owners.get(1), true, 100));
+        abstractPlots.add(new LancingPlot(3435, abstractPlots.size() + 1, "LocationLancingPlotA", borders.get(1),
+                owners.get(1), true, 100));
+        abstractPlots.add(new LancingPlot(4225, abstractPlots.size() + 1, "LocationLancingPlotB", borders.get(0),
+                owners.get(1), true, 50));
+        abstractPlots.add(new LancingPlot(6565, abstractPlots.size() + 1, "LocationLancingPlotC", borders.get(3),
+                owners.get(4), true, 500));
+        abstractPlots.add(new LancingPlot(875, abstractPlots.size() + 1, "LocationLancingPlotD", borders.get(1),
+                owners.get(1), true, 100));
     }
 
     private void createBorders() {
