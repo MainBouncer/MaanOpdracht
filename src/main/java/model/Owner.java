@@ -10,11 +10,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Builder
 public class Owner {
     private String name;
     private Set<AbstractPlot> ownedPlots;
 
+    @Builder
     public Owner(String name) {
         this.name = name;
         ownedPlots = new HashSet<>();
