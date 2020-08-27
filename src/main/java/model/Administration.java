@@ -38,6 +38,19 @@ public class Administration {
         return INSTANCE;
     }
 
+    public Map<LivingPlot, Integer> getNumberOfPeopleOver30PerPlot() {
+        List<LivingPlot> livingPlots = abstractPlots.stream()
+                .filter(plot -> plot instanceof LivingPlot)
+                .map(plot -> (LivingPlot) plot)
+                .collect(Collectors.toList());
+
+        Map<LivingPlot, Integer> map = new HashMap<>();
+        for (LivingPlot plot : livingPlots) {
+            int amountOver30 = (int) plot.getAges().stream().filter(i -> i >= 30).count();
+            map.put(plot, amountOver30);
+        }
+        return map;
+    }
 
     public Map<Crop, Double> getAverageCropsValue() {
         Map<Crop, List<FarmingPlot>> collect = abstractPlots.stream()
@@ -171,7 +184,7 @@ public class Administration {
 
     private void createLivingPlots() {
         abstractPlots.add(new LivingPlot(325, abstractPlots.size() + 1, "LivingPlotA", borders.get(1),
-                owners.get(1), true, Arrays.asList(10, 20, 30, 40, 50)));
+                owners.get(1), true, Arrays.asList(10, 20, 30, 40, 50, 60, 100)));
         abstractPlots.add(new LivingPlot(225, abstractPlots.size() + 1, "LivingPlotB", borders.get(3),
                 owners.get(4), true, Arrays.asList(43, 44, 55, 60, 10)));
         abstractPlots.add(new LivingPlot(115, abstractPlots.size() + 1, "LivingPlotC", borders.get(0),

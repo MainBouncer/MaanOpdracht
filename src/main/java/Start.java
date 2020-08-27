@@ -2,6 +2,7 @@ import enums.Crop;
 import model.Administration;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
+import model.plots.LivingPlot;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,8 +13,8 @@ public class Start {
     // Deel 2
 //    Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
 //    Een methode om het aantal delfstof percelen en het aantal gewas percelen te berekenen.
-//    TODO: De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
-//    TODO: Het aantal inwoners ouder dan 30 jaar per woonperceel moet opgevraagd worden.
+//    De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
+//    Het aantal inwoners ouder dan 30 jaar per woonperceel moet opgevraagd worden.
 //
 //
 //    TODO: Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn.
@@ -48,6 +49,9 @@ public class Start {
 
         Map<Crop, Double> averageCropValue = administration.getAverageCropsValue();
         System.out.println("The average crop value is " + averageCropValue);
+
+        Map<LivingPlot, Integer> peopleOver30PerPlot = administration.getNumberOfPeopleOver30PerPlot();
+        System.out.println("People over 30 per plot are " + peopleOver30PerPlot);
     }
 
 }
