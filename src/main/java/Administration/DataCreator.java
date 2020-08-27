@@ -52,7 +52,7 @@ public final class DataCreator {
         }
 
         List<Transfer> transfers = new ArrayList<>();
-        int upperLimit = new Random().nextInt(20);
+        int upperLimit = Math.max(new Random().nextInt(20), 1);
         LocalDate now = LocalDate.now();
         IntStream.range(0, upperLimit).forEach(i -> {
             Transfer transfer = Transfer.builder()
