@@ -5,6 +5,25 @@ import model.plots.FarmingPlot;
 import java.util.List;
 
 public class Start {
+//
+    // Deel 2
+//    TODO: Ook moet er een methode zijn om het aantal verkochte maanpercelen te berekenen per periode uit te rekenen.
+//    TODO: Een methode om het aantal delfstof percelen en het aantal gewas percelen te berekenen.
+//    TODO: De gemiddelde opbrengst van een perceel per gewas en per delfstof moet berekend kunnen worden.
+//    TODO: Het aantal inwoners ouder dan 30 jaar per woonperceel moet opgevraagd worden.
+//
+//
+//    TODO: Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn.
+//    Om te laten zien dat het werkt graag de rapportage uitdraaien per maand (mag console applicatie zijn met output van de rapoortage in het console).
+
+    // Deel 3
+//    TODO: De VN wil de administratie van delfstoffen verder uitwerken. De enum delfstof wordt vervangen door een immutable object.
+//    TODO: Dit Object bevat gegevens over bijv. elementnaam, elementnummer, stofdichtheid, radioactief. Voor het maken van deze objecten hebben we een klasse DelfstofBuilder nodig.
+//
+//    Maanadministratie moet singleton worden.
+//
+//    Verder, voor zover dit nog niet is toegepast op het model dient encapsulation te worden toegepast.
+
 
     public static void main(String[] args) {
         Administration administration = Administration.getInstance();
