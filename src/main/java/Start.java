@@ -7,7 +7,7 @@ import java.util.List;
 public class Start {
 
     public static void main(String[] args) {
-        Administration administration = new Administration();
+        Administration administration = Administration.getInstance();
 
         List<AbstractPlot> plotsSoldOverAverage = administration.getPlotsSoldOverAverage();
         System.out.println("There are " + plotsSoldOverAverage.size() + " plots sold over average.");

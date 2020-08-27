@@ -16,12 +16,14 @@ import java.util.stream.IntStream;
 @Getter
 public class Administration {
 
+    private static Administration INSTANCE;
+
     private List<AbstractPlot> abstractPlots = new ArrayList<>();
     private List<Owner> owners = new ArrayList<>();
     private List<Border> borders = new ArrayList<>();
     private List<Transfer> transfers = new ArrayList<>();
 
-    public Administration() {
+    private Administration() {
         createOwners();
         createBorders();
         createPlots();
@@ -30,6 +32,13 @@ public class Administration {
             Owner owner = ap.getOwner();
             owner.addPlot(ap);
         });
+    }
+
+    public static Administration getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Administration();
+        }
+        return INSTANCE;
     }
 
     public List<AbstractPlot> getPlotsSoldOverAverage() {
