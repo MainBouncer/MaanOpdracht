@@ -17,7 +17,7 @@ public class Start {
 //    Het aantal inwoners ouder dan 30 jaar per woonperceel moet opgevraagd worden.
 //
 //
-//    TODO: Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn.
+//    Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn.
 //    Om te laten zien dat het werkt graag de rapportage uitdraaien per maand (mag console applicatie zijn met output van de rapportage in het console).
 
     // Deel 3
