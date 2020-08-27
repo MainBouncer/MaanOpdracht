@@ -47,7 +47,7 @@ public class Start {
         System.out.println("There are " + amountFarmingPlots + " farming plots.");
 
         Map<Crop, Double> averageCropValue = administration.getAverageCropsValue();
-        System.out.println("");
+        System.out.println("The average crop value is " + averageCropValue);
     }
 
 }

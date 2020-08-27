@@ -175,11 +175,11 @@ public class Administration {
 
     private void createLivingPlots() {
         abstractPlots.add(new LivingPlot(325, abstractPlots.size() + 1, "LivingPlotA", borders.get(1),
-                owners.get(1), true, 50));
+                owners.get(1), true, Arrays.asList(10, 20, 30, 40, 50)));
         abstractPlots.add(new LivingPlot(225, abstractPlots.size() + 1, "LivingPlotB", borders.get(3),
-                owners.get(4), true, 500));
+                owners.get(4), true, Arrays.asList(43, 44, 55, 60, 10)));
         abstractPlots.add(new LivingPlot(115, abstractPlots.size() + 1, "LivingPlotC", borders.get(0),
-                owners.get(4), true, 100));
+                owners.get(4), true, Arrays.asList(50, 1, 10, 60, 10, 20, 40, 50)));
     }
 
     private void createLancingPlots() {
