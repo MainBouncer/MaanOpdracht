@@ -31,8 +31,8 @@ public class Administration {
     private Administration() {
         owners = DataCreator.createOwners();
         borders = DataCreator.createBorders();
-        abstractPlots = DataCreator.createPlots(borders, owners, minerals);
         minerals = DataCreator.createMinerals();
+        abstractPlots = DataCreator.createPlots(borders, owners, minerals);
 
         transfers = new ArrayList<>();
         abstractPlots.forEach(ap -> transfers.addAll(DataCreator.createTransfers(ap, owners)));
