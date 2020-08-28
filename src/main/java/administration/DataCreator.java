@@ -1,10 +1,10 @@
 package administration;
 
 import enums.Crop;
-import enums.Mineral;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.Border;
+import model.Mineral;
 import model.Owner;
 import model.Transfer;
 import model.plots.*;
@@ -15,6 +15,18 @@ import java.util.stream.IntStream;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DataCreator {
+
+    public static List<Mineral> createMinerals() {
+        return Arrays.asList(
+                model.Mineral.builder().name("Helium-3").density(3).isRadioActive(true).number(65).build(),
+                model.Mineral.builder().name("Helium-3").density(23).isRadioActive(false).number(45).build(),
+                model.Mineral.builder().name("Iridium").density(3).isRadioActive(true).number(26).build(),
+                model.Mineral.builder().name("Regolith").density(12).isRadioActive(true).number(3).build(),
+                model.Mineral.builder().name("Gold").density(34).isRadioActive(true).number(1).build(),
+                model.Mineral.builder().name("Palladium").density(54).isRadioActive(false).number(23).build(),
+                model.Mineral.builder().name("Platinum").density(15).isRadioActive(true).number(45).build()
+        );
+    }
 
     public static List<Owner> createOwners() {
         return Arrays.asList(
@@ -36,12 +48,12 @@ public final class DataCreator {
         );
     }
 
-    public static List<AbstractPlot> createPlots(List<Border> borders, List<Owner> owners) {
+    public static List<AbstractPlot> createPlots(List<Border> borders, List<Owner> owners, List<Mineral> minerals) {
         List<AbstractPlot> abstractPlots = new ArrayList<>();
         createFarmingPlots(abstractPlots, borders, owners);
         createLancingPlots(abstractPlots, borders, owners);
         createLivingPlots(abstractPlots, borders, owners);
-        createMiningPlots(abstractPlots, borders, owners);
+        createMiningPlots(abstractPlots, borders, owners, minerals);
         createWaterPlots(abstractPlots, borders, owners);
         return abstractPlots;
     }
@@ -93,9 +105,9 @@ public final class DataCreator {
                 getRandomOwner(owners), isSellable(), 131200));
     }
 
-    private static void createMiningPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) {
+    private static void createMiningPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners, List<Mineral> minerals) {
         Random random = new Random();
-        for (Mineral m : Mineral.values()) {
+        for (Mineral m : minerals) {
             int upperBound = Math.max(random.nextInt(25), 1);
             IntStream.range(0, upperBound).forEach(i -> {
                 int id = abstractPlots.size() + 1;

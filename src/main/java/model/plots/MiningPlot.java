@@ -1,10 +1,10 @@
 package model.plots;
 
-import enums.Mineral;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import model.Border;
+import model.Mineral;
 import model.Owner;
 
 @Getter

@@ -3,6 +3,7 @@ package administration;
 import enums.Crop;
 import lombok.Getter;
 import model.Border;
+import model.Mineral;
 import model.Owner;
 import model.Transfer;
 import model.plots.AbstractPlot;
@@ -25,11 +26,13 @@ public class Administration {
     private List<Owner> owners;
     private List<Border> borders;
     private List<Transfer> transfers;
+    private List<Mineral> minerals;
 
     private Administration() {
         owners = DataCreator.createOwners();
         borders = DataCreator.createBorders();
-        abstractPlots = DataCreator.createPlots(borders, owners);
+        abstractPlots = DataCreator.createPlots(borders, owners, minerals);
+        minerals = DataCreator.createMinerals();
 
         transfers = new ArrayList<>();
         abstractPlots.forEach(ap -> transfers.addAll(DataCreator.createTransfers(ap, owners)));

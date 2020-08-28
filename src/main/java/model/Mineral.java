@@ -1,5 +1,10 @@
 package model;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
 public final class Mineral {
     private final String name;
     private final long number;

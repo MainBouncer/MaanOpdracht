@@ -1,5 +1,6 @@
 import administration.Administration;
 import enums.Crop;
+import model.Mineral;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
 import model.plots.LivingPlot;
