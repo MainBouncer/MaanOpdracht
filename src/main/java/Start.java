@@ -1,4 +1,4 @@
-import Administration.Administration;
+import administration.Administration;
 import enums.Crop;
 import model.plots.AbstractPlot;
 import model.plots.FarmingPlot;
