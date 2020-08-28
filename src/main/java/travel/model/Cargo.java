@@ -8,7 +8,8 @@ import travel.enums.CargoType;
 @Getter
 @Setter
 @Builder
-public class Cargo {
+public class Cargo implements Comparable<Cargo> {
+
     private CargoType cargoType;
     private long volume;
     private long weight;
@@ -19,5 +20,22 @@ public class Cargo {
         this.volume = volume;
         this.weight = weight;
         this.perishable = perishable;
+    }
+
+    @Override
+    public int compareTo(Cargo other) {
+        // if either is perishable but the other is not, return -1 or 1
+        if (perishable ^ other.perishable) {
+            return perishable ? 1 : -1;
+        }
+        // if neither or both are perishable, continue to compare the rest
+        // heavier and bigger items in the back
+        if (volume != other.volume) {
+            return volume > other.volume ? -1 : 1;
+        }
+        if (weight != other.weight) {
+            return weight > other.weight ? -1 : 1;
+        }
+        return 0;
     }
 }
