@@ -1,11 +1,11 @@
-package administration;
+package plots.administration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import model.Owner;
-import model.Transfer;
-import model.plots.WaterPlot;
 import org.junit.jupiter.api.Test;
+import plots.model.Owner;
+import plots.model.Transfer;
+import plots.model.plots.WaterPlot;
 
 import java.util.ArrayList;
 import java.util.Collections;

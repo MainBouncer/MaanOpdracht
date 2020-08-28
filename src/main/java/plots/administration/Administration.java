@@ -1,14 +1,14 @@
-package administration;
+package plots.administration;
 
-import enums.Crop;
 import lombok.Getter;
-import model.Border;
-import model.Mineral;
-import model.Owner;
-import model.Transfer;
-import model.plots.AbstractPlot;
-import model.plots.FarmingPlot;
-import model.plots.LivingPlot;
+import plots.enums.Crop;
+import plots.model.Border;
+import plots.model.Mineral;
+import plots.model.Owner;
+import plots.model.Transfer;
+import plots.model.plots.AbstractPlot;
+import plots.model.plots.FarmingPlot;
+import plots.model.plots.LivingPlot;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

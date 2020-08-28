@@ -1,4 +1,4 @@
-package model;
+package plots.model;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package enums;
+package plots.enums;
 
 public enum Crop {
     TOMATO("Tomato"),
@@ -7,6 +7,7 @@ public enum Crop {
     LETTUCE("Lettuce"),
     PAPRIKA("Paprika");
     String name;
+
     Crop(String name) {
         this.name = name;
     }

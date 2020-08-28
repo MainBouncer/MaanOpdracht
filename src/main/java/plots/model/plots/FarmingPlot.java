@@ -1,11 +1,11 @@
-package model.plots;
+package plots.model.plots;
 
-import enums.Crop;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import model.Border;
-import model.Owner;
+import plots.enums.Crop;
+import plots.model.Border;
+import plots.model.Owner;
 
 @Getter
 @Setter

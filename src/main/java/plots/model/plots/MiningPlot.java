@@ -1,11 +1,11 @@
-package model.plots;
+package plots.model.plots;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import model.Border;
-import model.Mineral;
-import model.Owner;
+import plots.model.Border;
+import plots.model.Mineral;
+import plots.model.Owner;
 
 @Getter
 @Setter

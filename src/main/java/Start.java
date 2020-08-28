@@ -1,9 +1,8 @@
-import administration.Administration;
-import enums.Crop;
-import model.Mineral;
-import model.plots.AbstractPlot;
-import model.plots.FarmingPlot;
-import model.plots.LivingPlot;
+import plots.administration.Administration;
+import plots.enums.Crop;
+import plots.model.plots.AbstractPlot;
+import plots.model.plots.FarmingPlot;
+import plots.model.plots.LivingPlot;
 
 import java.time.LocalDate;
 import java.util.List;

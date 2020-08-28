@@ -1,13 +1,13 @@
-package administration;
+package plots.administration;
 
-import enums.Crop;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import model.Border;
-import model.Mineral;
-import model.Owner;
-import model.Transfer;
-import model.plots.*;
+import plots.enums.Crop;
+import plots.model.Border;
+import plots.model.Mineral;
+import plots.model.Owner;
+import plots.model.Transfer;
+import plots.model.plots.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -18,13 +18,13 @@ public final class DataCreator {
 
     public static List<Mineral> createMinerals() {
         return Arrays.asList(
-                model.Mineral.builder().name("Helium-3").density(3).isRadioActive(true).number(65).build(),
-                model.Mineral.builder().name("Helium-3").density(23).isRadioActive(false).number(45).build(),
-                model.Mineral.builder().name("Iridium").density(3).isRadioActive(true).number(26).build(),
-                model.Mineral.builder().name("Regolith").density(12).isRadioActive(true).number(3).build(),
-                model.Mineral.builder().name("Gold").density(34).isRadioActive(true).number(1).build(),
-                model.Mineral.builder().name("Palladium").density(54).isRadioActive(false).number(23).build(),
-                model.Mineral.builder().name("Platinum").density(15).isRadioActive(true).number(45).build()
+                plots.model.Mineral.builder().name("Helium-3").density(3).isRadioActive(true).number(65).build(),
+                plots.model.Mineral.builder().name("Helium-3").density(23).isRadioActive(false).number(45).build(),
+                plots.model.Mineral.builder().name("Iridium").density(3).isRadioActive(true).number(26).build(),
+                plots.model.Mineral.builder().name("Regolith").density(12).isRadioActive(true).number(3).build(),
+                plots.model.Mineral.builder().name("Gold").density(34).isRadioActive(true).number(1).build(),
+                plots.model.Mineral.builder().name("Palladium").density(54).isRadioActive(false).number(23).build(),
+                plots.model.Mineral.builder().name("Platinum").density(15).isRadioActive(true).number(45).build()
         );
     }
 

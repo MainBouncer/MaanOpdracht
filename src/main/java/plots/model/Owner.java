@@ -1,9 +1,9 @@
-package model;
+package plots.model;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import model.plots.AbstractPlot;
+import plots.model.plots.AbstractPlot;
 
 import java.util.HashSet;
 import java.util.Set;
