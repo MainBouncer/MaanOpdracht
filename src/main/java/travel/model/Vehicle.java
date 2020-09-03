@@ -1,17 +1,14 @@
 package travel.model;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import travel.enums.VehicleType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
 @Setter
-@Builder
 public class Vehicle {
 
     private int maxCargoSize;
@@ -24,14 +21,14 @@ public class Vehicle {
     }
 
     public Vehicle(VehicleType vehicleType, int maxCargoSize, int maxPassengerSize) {
-        this(new ArrayList<>(), new ArrayList<>(), vehicleType, maxCargoSize, maxPassengerSize);
+        this(new ArrayList<>(), vehicleType, maxCargoSize, maxPassengerSize);
     }
 
-    public Vehicle(List<Cargo> cargoList, List<String> passengers, VehicleType vehicleType, int maxCargoSize, int maxPassengerSize) {
-        if (cargoList == null || passengers == null) {
+    public Vehicle(List<Cargo> cargoList, VehicleType vehicleType, int maxCargoSize, int maxPassengerSize) {
+        if (cargoList == null) {
             throw new IllegalArgumentException("No null lists!");
         }
-        if (cargoList.size() > maxCargoSize || passengers.size() > maxPassengerSize) {
+        if (cargoList.size() > maxCargoSize) {
             throw new IllegalArgumentException("Your passed list is bigger than allowed, dumby.");
         }
         this.cargoList = cargoList;
