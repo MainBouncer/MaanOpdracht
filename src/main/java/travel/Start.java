@@ -25,6 +25,10 @@ public class Start {
 //    Als de queue vol is kan de monorail vertrekken. Je kunt er dan voor kiezen om kratten met bederfelijke waar voorrang te geven in de queue.
 //    De verschillende typen kratten moeten onderling vergeleken kunnen worden en gesorteerd kunnen worden op bepaalde eigenschappen.
 
+    // TODO: specific place reservations
+    // TODO: method to enter and leave vehicles for passengers
+    // TODO: method to load and unload cargo based on order
+
 
     public static void main(String[] args) {
         Administration administration = new Administration();
