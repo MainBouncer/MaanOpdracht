@@ -6,6 +6,7 @@ import lombok.Setter;
 import travel.enums.VehicleType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -14,9 +15,8 @@ import java.util.List;
 public class Vehicle {
 
     private int maxCargoSize;
-    private int maxPassengerSize;
     private List<Cargo> cargoList;
-    private List<String> passengers;
+    private String[] passengers;
     private VehicleType vehicleType;
 
     public Vehicle(VehicleType vehicleType) {
@@ -35,21 +35,40 @@ public class Vehicle {
             throw new IllegalArgumentException("Your passed list is bigger than allowed, dumby.");
         }
         this.cargoList = cargoList;
-        this.passengers = passengers;
+        this.passengers = new String[maxPassengerSize];
         this.vehicleType = vehicleType;
         this.maxCargoSize = maxCargoSize;
-        this.maxPassengerSize = maxPassengerSize;
+    }
+
+    public boolean reserveSpot(int position, String passengerName) {
+        if (position >= 0 && position < passengers.length) {
+            if (passengers[position] != null) {
+                return false;
+            }
+            passengers[position] = passengerName;
+            return true;
+        }
+        return false;
     }
 
     public boolean enterPassenger(String passengerName) {
-        if (passengers.size() >= maxPassengerSize) {
-            return false;
+        for (int i = 0; i < passengers.length; i++) {
+            if (passengers[i] == null) {
+                passengers[i] = passengerName;
+                return true;
+            }
         }
-        return passengers.add(passengerName);
+        return false;
     }
 
     public boolean leavePassenger(String passengerName) {
-        return passengers.remove(passengerName);
+        for (int i = 0; i < passengers.length; i++) {
+            if (passengers[i].equals(passengerName)) {
+                passengers[i] = null;
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean loadCargo(Cargo cargo) {
@@ -62,4 +81,5 @@ public class Vehicle {
     public boolean unloadCargo(Cargo cargo) {
         return cargoList.remove(cargo);
     }
+
 }
