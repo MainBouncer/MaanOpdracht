@@ -7,6 +7,7 @@ import plots.model.Border;
 import plots.model.Owner;
 
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ public class LivingPlot extends AbstractPlot {
 
     @Builder
     public LivingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, List<Integer> ages) {
-        super(size, id, location, border, owner, sellable);
+        super(size, id, location, border, owner, sellable, Optional.empty());
         this.ages = ages;
     }
 }

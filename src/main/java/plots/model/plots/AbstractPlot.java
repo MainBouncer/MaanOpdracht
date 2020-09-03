@@ -17,9 +17,9 @@ public abstract class AbstractPlot {
     private Border border;
     private Owner owner;
     private boolean sellable;
-    private Optional<AbstractPermit> abstractPermit;
+    private Optional<? extends AbstractPermit> abstractPermit;
 
-    public AbstractPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Optional<AbstractPermit> abstractPermit) {
+    public AbstractPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Optional<? extends AbstractPermit> abstractPermit) {
         this.size = size;
         this.id = id;
         this.location = location;

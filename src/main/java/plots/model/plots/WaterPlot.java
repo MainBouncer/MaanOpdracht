@@ -6,6 +6,8 @@ import lombok.Setter;
 import plots.model.Border;
 import plots.model.Owner;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 public class WaterPlot extends AbstractPlot {
@@ -13,7 +15,7 @@ public class WaterPlot extends AbstractPlot {
 
     @Builder
     public WaterPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long waterPerYear) {
-        super(size, id, location, border, owner, sellable);
+        super(size, id, location, border, owner, sellable, Optional.empty());
         this.waterPerYear = waterPerYear;
     }
 }

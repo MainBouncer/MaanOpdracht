@@ -7,6 +7,9 @@ import plots.model.Border;
 import plots.model.Mineral;
 import plots.model.Owner;
 import plots.model.Transfer;
+import plots.model.permit.AbstractPermit;
+import plots.model.permit.CropPermit;
+import plots.model.permit.MineralPermit;
 import plots.model.plots.*;
 
 import java.time.LocalDate;
@@ -86,7 +89,8 @@ public final class DataCreator {
             IntStream.range(0, upperBound).forEach(i -> {
                 FarmingPlot farm = new FarmingPlot(2500, abstractPlots.size() + 1,
                         "Farm", getRandomBorder(borders), getRandomOwner(owners),
-                        isSellable(), c, random.nextInt(1000));
+                        isSellable(), c, random.nextInt(1000), createCropPermit(c));
+                farm.getAbstractPermit().ifPresent(p -> ((AbstractPermit) p).setPlot(farm));
                 abstractPlots.add(farm);
             });
         }
@@ -111,9 +115,35 @@ public final class DataCreator {
             int upperBound = Math.max(random.nextInt(25), 1);
             IntStream.range(0, upperBound).forEach(i -> {
                 int id = abstractPlots.size() + 1;
-                new MiningPlot(random.nextInt(1000), id, "Mining", getRandomBorder(borders),
-                        getRandomOwner(owners), isSellable(), m, 100);
+                MiningPlot plot = new MiningPlot(random.nextInt(1000), id, "Mining", getRandomBorder(borders),
+                        getRandomOwner(owners), isSellable(), m, 100, createMineralPermit(m));
+                plot.getAbstractPermit().ifPresent(p -> ((AbstractPermit) p).setPlot(plot));
+                abstractPlots.add(plot);
             });
+        }
+    }
+
+    private static Optional<MineralPermit> createMineralPermit(Mineral mineral){
+        if(mineral.isPermitRequired()){
+            return Optional.of(MineralPermit.builder()
+                    .endDate(LocalDate.now().plusYears(1))
+                    .mineral(mineral)
+                    .operator("Johnny")
+                    .build());
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    private static Optional<CropPermit> createCropPermit(Crop crop){
+        if(crop.isPermitRequired()){
+            return Optional.of(CropPermit.builder()
+                    .endDate(LocalDate.now().plusYears(1))
+                    .crop(crop)
+                    .operator("John")
+                    .build());
+        } else {
+            return Optional.empty();
         }
     }
 
