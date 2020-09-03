@@ -5,7 +5,10 @@ public enum Crop {
     CUCUMBER("Cucumber"),
     RADISH("Radish"),
     LETTUCE("Lettuce"),
-    PAPRIKA("Paprika");
+    PAPRIKA("Paprika"),
+    CANNABIS("Cannabis"),
+    MOONSEED("Moonseed");
+
     String name;
 
     Crop(String name) {
