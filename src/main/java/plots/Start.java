@@ -35,6 +35,8 @@ public class Start {
 
         Map<LivingPlot, Integer> peopleOver30PerPlot = administration.getNumberOfPeopleOver30PerPlot();
         System.out.println("People over 30 per plot are " + peopleOver30PerPlot);
+
+        administration.getBestFarmingPlot();
     }
 
 }

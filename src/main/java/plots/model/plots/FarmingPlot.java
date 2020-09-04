@@ -29,4 +29,11 @@ public class FarmingPlot extends AbstractPlot {
         return getCropPerYear() * getCrop().getCalories();
     }
 
+    @Override
+    public String toString() {
+        return "FarmingPlot{" +
+                "crop=" + crop +
+                ", cropPerYear=" + cropPerYear +
+                '}';
+    }
 }

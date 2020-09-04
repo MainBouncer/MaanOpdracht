@@ -32,4 +32,13 @@ public enum Crop {
         }
         return currentMax;
     }
+
+    @Override
+    public String toString() {
+        return "Crop{" +
+                "name='" + name + '\'' +
+                ", isPermitRequired=" + isPermitRequired +
+                ", calories=" + calories +
+                '}';
+    }
 }

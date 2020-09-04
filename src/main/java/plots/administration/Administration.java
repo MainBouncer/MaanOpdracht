@@ -143,7 +143,7 @@ public class Administration {
         return average;
     }
 
-    private FarmingPlot getBestFarmingPlot() {
+    public FarmingPlot getBestFarmingPlot() {
         FarmingPlot maxPlotValue = abstractPlots.stream()
                 .filter(plot -> plot instanceof FarmingPlot)
                 .map(plot -> (FarmingPlot) plot)
