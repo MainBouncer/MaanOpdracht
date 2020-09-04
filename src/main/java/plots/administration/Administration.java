@@ -6,6 +6,7 @@ import plots.model.Border;
 import plots.model.Mineral;
 import plots.model.Owner;
 import plots.model.Transfer;
+import plots.model.permit.AbstractPermit;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
@@ -152,6 +153,17 @@ public class Administration {
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
         System.out.println("Best farming plot amount is" + maxPlotValue);
         return maxPlotValue;
+    }
+
+    public List<? extends AbstractPermit> getPermits() {
+        List<? extends AbstractPermit> permits = abstractPlots.stream()
+                .filter(plot -> plot.getAbstractPermit().isPresent())
+                .map(plot -> plot.getAbstractPermit().get())
+                .collect(Collectors.toList());
+
+        permits.forEach(System.out::println);
+
+        return permits;
     }
 
 }

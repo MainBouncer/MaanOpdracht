@@ -21,4 +21,14 @@ public class AbstractPermit {
         this.endDate = endDate;
         this.operator = operator;
     }
+
+    @Override
+    public String toString() {
+        return "AbstractPermit{" +
+                "plot=" + plot +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", operator='" + operator + '\'' +
+                '}';
+    }
 }
