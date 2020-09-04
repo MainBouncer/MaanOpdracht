@@ -22,12 +22,14 @@ public enum Crop {
         this.calories = calories;
     }
 
-    public Crop getHighestCaloryCrop() {
+    public Crop getHighestCalorieCrop() {
         Crop currentMax = Crop.values()[0];
-        for(Crop crop:Crop.values()) {
+        for (Crop crop : Crop.values()) {
             if (crop.getCalories() > currentMax.getCalories()) {
-                currentMax = crop
+                currentMax = crop;
+            }
+
         }
-        }
+        return currentMax;
     }
 }

@@ -17,10 +17,16 @@ public class FarmingPlot extends AbstractPlot {
     private Crop crop;
     private long cropPerYear;
 
+
     @Builder
     public FarmingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Crop crop, long cropPerYear, Optional<CropPermit> permit) {
         super(size, id, location, border, owner, sellable, permit);
         this.crop = crop;
         this.cropPerYear = cropPerYear;
     }
+
+    public Long getCalorieValue(){
+        return getCropPerYear() * getCrop().getCalories();
+    }
+
 }

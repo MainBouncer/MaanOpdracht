@@ -142,4 +142,16 @@ public class Administration {
         System.out.println("Average crop value is " + average);
         return average;
     }
+
+    private FarmingPlot getBestFarmingPlot() {
+        FarmingPlot maxPlotValue = abstractPlots.stream()
+                .filter(plot -> plot instanceof FarmingPlot)
+                .map(plot -> (FarmingPlot) plot)
+                .sorted((plot1, plot2) -> plot1.getCalorieValue() >= plot2.getCalorieValue() ? 1 : -1)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
+        System.out.println("Best farming plot amount is" + maxPlotValue);
+        return maxPlotValue;
+    }
+
 }
