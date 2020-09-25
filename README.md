@@ -56,3 +56,7 @@ Per rit (van A naar B) wordt gekeken hoe de vracht en de passagiers zo optimaal 
 De beschikbare ruimte moet zo veel mogelijk worden gevuld.
 Je zou bijvoorbeeld een monorail kunnen hebben waarin tien kratten passen. Iedereen die iets vervoerd wil hebben zet het in de queue. Als de queue vol is kan de monorail vertrekken. Je kunt er dan voor kiezen om kratten met bederfelijke waar voorrang te geven in de queue.
 De verschillende typen kratten moeten onderling vergeleken kunnen worden en gesorteerd kunnen worden op bepaalde eigenschappen.
+
+
+Deel 4
+Alle statements die geprint worden moeten zowel beschikbaar zijn in het Nederlands, Engels en het Maans.
