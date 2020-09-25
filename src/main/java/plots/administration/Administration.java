@@ -105,7 +105,6 @@ public class Administration {
 
     public List<AbstractPlot> getPlotsSoldOverAverage() {
         int averageSold = transfers.size() / abstractPlots.size();
-        System.out.println("Average sold: " + averageSold);
         return abstractPlots.stream()
                 .filter(plot -> getAmountOfTransfersWithPlot(plot) > averageSold)
                 .collect(Collectors.toList());
@@ -113,7 +112,6 @@ public class Administration {
 
     public List<AbstractPlot> getPlotsSoldUnderAverage() {
         int averageSold = transfers.size() / abstractPlots.size();
-        System.out.println("Average sold: " + averageSold);
         return abstractPlots.stream()
                 .filter(plot -> getAmountOfTransfersWithPlot(plot) < averageSold)
                 .collect(Collectors.toList());
@@ -140,7 +138,6 @@ public class Administration {
                 .mapToLong(Long::longValue)
                 .average()
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
-        System.out.println("Average crop value is " + average);
         return average;
     }
 
@@ -151,7 +148,6 @@ public class Administration {
                 .sorted((plot1, plot2) -> plot1.getCalorieValue() >= plot2.getCalorieValue() ? 1 : -1)
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
-        System.out.println("Best farming plot amount is" + maxPlotValue);
         return maxPlotValue;
     }
 
@@ -160,9 +156,6 @@ public class Administration {
                 .filter(plot -> plot.getAbstractPermit().isPresent())
                 .map(plot -> plot.getAbstractPermit().get())
                 .collect(Collectors.toList());
-
-        permits.forEach(System.out::println);
-
         return permits;
     }
 

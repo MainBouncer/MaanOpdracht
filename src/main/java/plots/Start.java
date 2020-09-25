@@ -5,36 +5,47 @@ import plots.enums.Crop;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
+import resources.PrintStatements;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class Start {
 
     public static void main(String[] args) {
         Administration administration = Administration.getInstance();
 
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(PrintStatements.class.getName(), new Locale("nl"));
+
         List<AbstractPlot> plotsSoldOverAverage = administration.getPlotsSoldOverAverage();
-        System.out.println("There are " + plotsSoldOverAverage.size() + " plots sold over average.");
+        System.out.println(String.format(resourceBundle.getString(PrintStatements.PLOT_OVER_AVERAGE), plotsSoldOverAverage.size()));
 
         List<AbstractPlot> plotsSoldUnderAverage = administration.getPlotsSoldUnderAverage();
-        System.out.println("There are " + plotsSoldUnderAverage.size() + " plots sold under average.");
+        System.out.println(String.format(resourceBundle.getString(PrintStatements.PLOT_UNDER_AVERAGE), plotsSoldUnderAverage.size()));
 
         List<FarmingPlot> farmingPlotsWithGoodProduction = administration.getFarmingPlotsWithGoodProduction();
-        System.out.println("There are " + farmingPlotsWithGoodProduction.size() + " with production over average.");
+        System.out.println(String.format(resourceBundle.getString(PrintStatements.FARMING_PLOT_OVER_AVERAGE), farmingPlotsWithGoodProduction.size()));
 
         long plotsSoldPerPeriod = administration.getPlotsSoldPerPeriod(LocalDate.now().minusDays(3), LocalDate.now());
-        System.out.println("There are " + plotsSoldPerPeriod + " plots sold in this period.");
+        System.out.println(String.format(resourceBundle.getString(PrintStatements.PLOTS_SOLD_PER_PERIOD), plotsSoldPerPeriod));
 
         int amountFarmingPlots = administration.getAmountOfPlotsOfType(FarmingPlot.class);
-        System.out.println("There are " + amountFarmingPlots + " farming plots.");
+        System.out.println(String.format(resourceBundle.getString(PrintStatements.AMOUNT_OF_FARMING_PLOTS), amountFarmingPlots));
 
         Map<Crop, Double> averageCropValue = administration.getAverageCropsValue();
-        System.out.println("The average crop value is " + averageCropValue);
+
+        averageCropValue.forEach((crop, value) ->
+                System.out.println(String.format(resourceBundle.getString(PrintStatements.AVERAGE_CROP_VALUE), crop.getName(), value))
+        );
 
         Map<LivingPlot, Integer> peopleOver30PerPlot = administration.getNumberOfPeopleOver30PerPlot();
-        System.out.println("People over 30 per plot are " + peopleOver30PerPlot);
+
+        peopleOver30PerPlot.forEach((livingPlot, value) ->
+                System.out.println(String.format(resourceBundle.getString(PrintStatements.AMOUNT_OF_PEOPLE_OVER_30), value, livingPlot.toString()))
+        );
 
         administration.getBestFarmingPlot();
     }
