@@ -58,5 +58,5 @@ Je zou bijvoorbeeld een monorail kunnen hebben waarin tien kratten passen. Ieder
 De verschillende typen kratten moeten onderling vergeleken kunnen worden en gesorteerd kunnen worden op bepaalde eigenschappen.
 
 
-Deel 4
+Deel 5
 Alle statements die geprint worden moeten zowel beschikbaar zijn in het Nederlands, Engels en het Maans.
