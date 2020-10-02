@@ -6,7 +6,7 @@ import plots.model.Border;
 import plots.model.Mineral;
 import plots.model.Owner;
 import plots.model.Transfer;
-import plots.model.exception.UnExpectedValueException;
+import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
@@ -30,7 +30,7 @@ public class Administration {
     private List<Transfer> transfers;
     private List<Mineral> minerals;
 
-    private Administration() throws UnExpectedValueException {
+    private Administration() throws UnexpectedValueException {
         owners = DataCreator.createOwners();
         borders = DataCreator.createBorders();
         minerals = DataCreator.createMinerals();
@@ -45,7 +45,7 @@ public class Administration {
         });
     }
 
-    public static Administration getInstance() throws UnExpectedValueException {
+    public static Administration getInstance() throws UnexpectedValueException {
         if (INSTANCE == null) {
             INSTANCE = new Administration();
         }

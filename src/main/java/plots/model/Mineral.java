@@ -2,7 +2,8 @@ package plots.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import plots.model.exception.UnExpectedValueException;
+import plots.model.exception.PermitNotPossibleUncheckedException;
+import plots.model.exception.UnexpectedValueException;
 
 @Getter
 
@@ -14,14 +15,18 @@ public final class Mineral {
     private final boolean isPermitRequired;
 
     @Builder
-    public Mineral(String name, long number, long density, boolean isRadioActive, boolean isPermitRequired) throws UnExpectedValueException {
+    public Mineral(String name, long number, long density, boolean isRadioActive, boolean isPermitRequired) throws UnexpectedValueException {
         assert name != null;
-        this.name = name;
 
         if (number == 0 || density == 0) {
-            throw new UnExpectedValueException();
+            throw new UnexpectedValueException();
         }
 
+        if (isRadioActive && isPermitRequired) {
+            throw new PermitNotPossibleUncheckedException();
+        }
+
+        this.name = name;
         this.number = number;
         this.density = density;
         this.isRadioActive = isRadioActive;

@@ -2,7 +2,7 @@ package plots;
 
 import plots.administration.Administration;
 import plots.enums.Crop;
-import plots.model.exception.UnExpectedValueException;
+import plots.model.exception.UnexpectedValueException;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class Start {
 
-    public static void main(String[] args) throws UnExpectedValueException {
+    public static void main(String[] args) throws UnexpectedValueException {
         Administration administration = Administration.getInstance();
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle(PrintStatements.class.getName(), new Locale("nl"));

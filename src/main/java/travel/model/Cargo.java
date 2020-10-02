@@ -24,6 +24,10 @@ public class Cargo implements Comparable<Cargo> {
 
     @Override
     public int compareTo(Cargo other) {
+        if (other == null) {
+            return 1;
+        }
+
         // if either is perishable but the other is not, return -1 or 1
         if (perishable ^ other.perishable) {
             return perishable ? 1 : -1;

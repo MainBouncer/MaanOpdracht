@@ -7,7 +7,7 @@ import plots.model.Border;
 import plots.model.Mineral;
 import plots.model.Owner;
 import plots.model.Transfer;
-import plots.model.exception.UnExpectedValueException;
+import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
 import plots.model.permit.CropPermit;
 import plots.model.permit.MineralPermit;
@@ -20,7 +20,7 @@ import java.util.stream.IntStream;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DataCreator {
 
-    public static List<Mineral> createMinerals() throws UnExpectedValueException {
+    public static List<Mineral> createMinerals() throws UnexpectedValueException {
         return Arrays.asList(
                 plots.model.Mineral.builder().name("Helium-3").density(3).isRadioActive(true).number(65).build(),
                 plots.model.Mineral.builder().name("Helium-3").density(23).isRadioActive(false).number(45).build(),

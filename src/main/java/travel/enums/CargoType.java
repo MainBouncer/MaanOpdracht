@@ -11,4 +11,8 @@ public enum CargoType {
         Random random = new Random();
         return CargoType.values()[random.nextInt(CargoType.values().length)];
     }
+
+    private void doSomething() throws Exception {
+
+    }
 }
