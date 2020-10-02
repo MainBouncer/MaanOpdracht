@@ -23,7 +23,7 @@ public class MiningPlot extends AbstractPlot {
             throws UnexpectedValueException, PermitRequiredException {
         super(size, id, location, border, owner, sellable, permit);
 
-        if (mineral.isPermitRequired() && permit.isEmpty()) {
+        if (mineral != null && mineral.isPermitRequired() && permit.isEmpty()) {
             throw new PermitRequiredException();
         }
         this.mineral = mineral;

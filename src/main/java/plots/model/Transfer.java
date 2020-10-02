@@ -20,7 +20,7 @@ public class Transfer {
 
     @Builder
     public Transfer(long id, Owner newOwner, Owner oldOwner, LocalDate date, AbstractPlot plot) throws IncorrectTransferException {
-        if (newOwner.equals(oldOwner)) {
+        if (newOwner == null || oldOwner == null || newOwner.equals(oldOwner)) {
             throw new IncorrectTransferException();
         }
 

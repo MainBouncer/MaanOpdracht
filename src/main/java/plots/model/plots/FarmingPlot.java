@@ -23,7 +23,7 @@ public class FarmingPlot extends AbstractPlot {
             throws UnexpectedValueException, PermitRequiredException {
         super(size, id, location, border, owner, sellable, permit);
 
-        if (crop.isPermitRequired() && permit.isEmpty()) {
+        if (crop != null && crop.isPermitRequired() && permit.isEmpty()) {
             throw new PermitRequiredException();
         }
 
