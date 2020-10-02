@@ -2,13 +2,13 @@ package plots.administration;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import plots.enums.Crop;
 import plots.model.Border;
 import plots.model.Mineral;
 import plots.model.Owner;
 import plots.model.Transfer;
 import plots.model.exception.UnexpectedValueException;
-import plots.model.permit.AbstractPermit;
 import plots.model.permit.CropPermit;
 import plots.model.permit.MineralPermit;
 import plots.model.plots.*;
@@ -52,7 +52,7 @@ public final class DataCreator {
         );
     }
 
-    public static List<AbstractPlot> createPlots(List<Border> borders, List<Owner> owners, List<Mineral> minerals) {
+    public static List<AbstractPlot> createPlots(List<Border> borders, List<Owner> owners, List<Mineral> minerals) throws UnexpectedValueException {
         List<AbstractPlot> abstractPlots = new ArrayList<>();
         createFarmingPlots(abstractPlots, borders, owners);
         createLancingPlots(abstractPlots, borders, owners);
@@ -70,16 +70,18 @@ public final class DataCreator {
         List<Transfer> transfers = new ArrayList<>();
         int upperLimit = Math.max(new Random().nextInt(20), 1);
         LocalDate now = LocalDate.now();
-        IntStream.range(0, upperLimit).forEach(i -> {
-            Transfer transfer = Transfer.builder()
-                    .plot(ap)
-                    .oldOwner(owners.get(i % owners.size()))
-                    .newOwner(owners.get((i + 1) % owners.size()))
-                    .date(now.minusDays(i))
-                    .build();
-            transfers.add(transfer);
-        });
+        IntStream.range(0, upperLimit).forEach(i -> transfers.add(createTransfer(ap, owners, now, i)));
         return transfers;
+    }
+
+    @SneakyThrows
+    private static Transfer createTransfer(AbstractPlot ap, List<Owner> owners, LocalDate now, int i) {
+        return Transfer.builder()
+                .plot(ap)
+                .oldOwner(owners.get(i % owners.size()))
+                .newOwner(owners.get((i + 1) % owners.size()))
+                .date(now.minusDays(i))
+                .build();
     }
 
     private static void createFarmingPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) {
@@ -88,16 +90,20 @@ public final class DataCreator {
             int upperBound = Math.max(random.nextInt(25), 1);
             System.out.println("Creating " + upperBound + " " + c.getName() + " farms.");
             IntStream.range(0, upperBound).forEach(i -> {
-                FarmingPlot farm = new FarmingPlot(2500, abstractPlots.size() + 1,
-                        "Farm", getRandomBorder(borders), getRandomOwner(owners),
-                        isSellable(), c, random.nextInt(1000), createCropPermit(c));
-                farm.getAbstractPermit().ifPresent(p -> ((AbstractPermit) p).setPlot(farm));
+                FarmingPlot farm = createFarmingPlot(abstractPlots, borders, owners, random, c);
+                farm.getAbstractPermit().ifPresent(p -> p.setPlot(farm));
                 abstractPlots.add(farm);
             });
         }
     }
 
-    private static void createWaterPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) {
+    @SneakyThrows
+    private static FarmingPlot createFarmingPlot(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners, Random random, Crop c) {
+        return new FarmingPlot(2500, abstractPlots.size() + 1, "Farm", getRandomBorder(borders),
+                getRandomOwner(owners), isSellable(), c, random.nextInt(1000), createCropPermit(c));
+    }
+
+    private static void createWaterPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) throws UnexpectedValueException {
         abstractPlots.add(new WaterPlot(13255, abstractPlots.size() + 1, "WaterPlotA", getRandomBorder(borders),
                 getRandomOwner(owners), isSellable(), 131200));
         abstractPlots.add(new WaterPlot(32255, abstractPlots.size() + 1, "WaterPlotB", getRandomBorder(borders),
@@ -116,16 +122,21 @@ public final class DataCreator {
             int upperBound = Math.max(random.nextInt(25), 1);
             IntStream.range(0, upperBound).forEach(i -> {
                 int id = abstractPlots.size() + 1;
-                MiningPlot plot = new MiningPlot(random.nextInt(1000), id, "Mining", getRandomBorder(borders),
-                        getRandomOwner(owners), isSellable(), m, 100, createMineralPermit(m));
-                plot.getAbstractPermit().ifPresent(p -> ((AbstractPermit) p).setPlot(plot));
+                MiningPlot plot = getMiningPlot(borders, owners, random, m, id);
+                plot.getAbstractPermit().ifPresent(p -> p.setPlot(plot));
                 abstractPlots.add(plot);
             });
         }
     }
 
-    private static Optional<MineralPermit> createMineralPermit(Mineral mineral){
-        if(mineral.isPermitRequired()){
+    @SneakyThrows
+    private static MiningPlot getMiningPlot(List<Border> borders, List<Owner> owners, Random random, Mineral m, int id) {
+        return new MiningPlot(random.nextInt(1000), id, "Mining", getRandomBorder(borders),
+                getRandomOwner(owners), isSellable(), m, 100, createMineralPermit(m));
+    }
+
+    private static Optional<MineralPermit> createMineralPermit(Mineral mineral) {
+        if (mineral.isPermitRequired()) {
             return Optional.of(MineralPermit.builder()
                     .endDate(LocalDate.now().plusYears(1))
                     .mineral(mineral)
@@ -136,8 +147,8 @@ public final class DataCreator {
         }
     }
 
-    private static Optional<CropPermit> createCropPermit(Crop crop){
-        if(crop.isPermitRequired()){
+    private static Optional<CropPermit> createCropPermit(Crop crop) {
+        if (crop.isPermitRequired()) {
             return Optional.of(CropPermit.builder()
                     .endDate(LocalDate.now().plusYears(1))
                     .crop(crop)
@@ -148,7 +159,7 @@ public final class DataCreator {
         }
     }
 
-    private static void createLivingPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) {
+    private static void createLivingPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) throws UnexpectedValueException {
         abstractPlots.add(new LivingPlot(325, abstractPlots.size() + 1, "LivingPlotA", getRandomBorder(borders),
                 getRandomOwner(owners), isSellable(), Arrays.asList(10, 20, 30, 40, 50, 60, 100)));
         abstractPlots.add(new LivingPlot(225, abstractPlots.size() + 1, "LivingPlotB", getRandomBorder(borders),
@@ -157,7 +168,7 @@ public final class DataCreator {
                 getRandomOwner(owners), isSellable(), Arrays.asList(50, 1, 10, 60, 10, 20, 40, 50)));
     }
 
-    private static void createLancingPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) {
+    private static void createLancingPlots(List<AbstractPlot> abstractPlots, List<Border> borders, List<Owner> owners) throws UnexpectedValueException {
         abstractPlots.add(new LancingPlot(3435, abstractPlots.size() + 1, "LocationLancingPlotA",
                 getRandomBorder(borders), getRandomOwner(owners), isSellable(), 100));
         abstractPlots.add(new LancingPlot(4225, abstractPlots.size() + 1, "LocationLancingPlotB",

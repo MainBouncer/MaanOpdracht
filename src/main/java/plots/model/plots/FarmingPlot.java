@@ -6,7 +6,8 @@ import lombok.Setter;
 import plots.enums.Crop;
 import plots.model.Border;
 import plots.model.Owner;
-import plots.model.permit.AbstractPermit;
+import plots.model.exception.PermitRequiredException;
+import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.CropPermit;
 
 import java.util.Optional;
@@ -17,15 +18,20 @@ public class FarmingPlot extends AbstractPlot {
     private Crop crop;
     private long cropPerYear;
 
-
     @Builder
-    public FarmingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Crop crop, long cropPerYear, Optional<CropPermit> permit) {
+    public FarmingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Crop crop, long cropPerYear, Optional<CropPermit> permit)
+            throws UnexpectedValueException, PermitRequiredException {
         super(size, id, location, border, owner, sellable, permit);
+
+        if (crop.isPermitRequired() && permit.isEmpty()) {
+            throw new PermitRequiredException();
+        }
+
         this.crop = crop;
         this.cropPerYear = cropPerYear;
     }
 
-    public Long getCalorieValue(){
+    public Long getCalorieValue() {
         return getCropPerYear() * getCrop().getCalories();
     }
 

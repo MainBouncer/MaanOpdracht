@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import plots.model.Border;
 import plots.model.Owner;
+import plots.model.exception.UnexpectedValueException;
 
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public class LancingPlot extends AbstractPlot {
     private long rocketSize;
 
     @Builder
-    public LancingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long rocketSize) {
+    public LancingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long rocketSize) throws UnexpectedValueException {
         super(size, id, location, border, owner, sellable, Optional.empty());
         this.rocketSize = rocketSize;
     }

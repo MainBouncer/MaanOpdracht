@@ -132,32 +132,29 @@ public class Administration {
     }
 
     private double getAverageCropValue() {
-        double average = abstractPlots.stream()
+        return abstractPlots.stream()
                 .filter(plot -> plot instanceof FarmingPlot)
                 .map(plot -> (FarmingPlot) plot)
                 .map(FarmingPlot::getCropPerYear)
                 .mapToLong(Long::longValue)
                 .average()
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
-        return average;
     }
 
     public FarmingPlot getBestFarmingPlot() {
-        FarmingPlot maxPlotValue = abstractPlots.stream()
+        return abstractPlots.stream()
                 .filter(plot -> plot instanceof FarmingPlot)
                 .map(plot -> (FarmingPlot) plot)
                 .sorted((plot1, plot2) -> plot1.getCalorieValue() >= plot2.getCalorieValue() ? 1 : -1)
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("No FarmingPlots in the system"));
-        return maxPlotValue;
     }
 
     public List<? extends AbstractPermit> getPermits() {
-        List<? extends AbstractPermit> permits = abstractPlots.stream()
+        return abstractPlots.stream()
                 .filter(plot -> plot.getAbstractPermit().isPresent())
                 .map(plot -> plot.getAbstractPermit().get())
                 .collect(Collectors.toList());
-        return permits;
     }
 
 }

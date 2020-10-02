@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import plots.model.Owner;
 import plots.model.Transfer;
+import plots.model.exception.UnexpectedValueException;
 import plots.model.plots.WaterPlot;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 class DataCreatorTest {
 
     @Test
-    void createTransfers_shouldNotCreateIfNotSellable() {
+    void createTransfers_shouldNotCreateIfNotSellable() throws UnexpectedValueException {
         // given
         WaterPlot plot = WaterPlot.builder().sellable(false).build();
         List<Owner> owners = new ArrayList<>();
@@ -27,7 +28,7 @@ class DataCreatorTest {
     }
 
     @Test
-    void createTransfers_shouldCreateIfSellable() {
+    void createTransfers_shouldCreateIfSellable() throws UnexpectedValueException {
         // given
         WaterPlot plot = WaterPlot.builder().sellable(true).build();
         Owner owner = Owner.builder().name("owner 1").build();

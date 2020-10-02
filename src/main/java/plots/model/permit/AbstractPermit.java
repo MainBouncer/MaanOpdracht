@@ -1,6 +1,5 @@
 package plots.model.permit;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import plots.model.plots.AbstractPlot;
