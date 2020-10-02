@@ -45,6 +45,7 @@ Deel 3
 De VN wil de administratie van delfstoffen verder uitwerken. De enum delfstof wordt vervangen door een immutable object. Dit Object bevat gegevens over bijv. elementnaam, elementnummer, stofdichtheid, radioactief. Voor het maken van deze objecten hebben we een klasse DelfstofBuilder nodig.
 Maanadministratie moet singleton worden.
 Verder, voor zover dit nog niet is toegepast op het model dient encapsulation te worden toegepast. 
+
 Deel 4
 Om mensen en waren van de ene plek naar de andere te kunnen vervoeren zijn er op de maan een aantal vervoersbedrijven. Deze vervoersbedrijven maken gebruik van verschillende vervoersmiddelen, zoals een raket of een monorail.
 De vervoersbedrijven hebben voor het verplaatsen van passagier een set van beschikbare zitplaatsen per trein, per vertrektijd, per station. Een passagier kan een plek reserveren, deze plek is dan niet meer beschikbaar.  De passagier kan een specifieke plek reserveren.
@@ -60,3 +61,17 @@ De verschillende typen kratten moeten onderling vergeleken kunnen worden en geso
 
 Deel 5
 Alle statements die geprint worden moeten zowel beschikbaar zijn in het Nederlands, Engels en het Maans.
+
+Deel 6
+
+Controleer bij het aanmaken van de delfstof of de waarden die niet null mogen zijn ook daadwerkelijk gevuld zijn.
+Is dit niet het geval gooi dan een eigen Exceptie.
+ 
+(Bouw een unittest om dit gedrag te testen.)
+ 
+Probeer het verschil tussen Unchecked en Checked exceptions.
+Beslis of je een exception ter plekke afvangt of doorgooit.
+ 
+ 
+Kijk naar de bestaande code en zoek uit waar je ExceptionHandling toe kunt voegen.
+Zoek hierbij in de lijst met OCP-exceptions welke het best van toepassing is.
