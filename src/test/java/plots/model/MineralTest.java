@@ -38,20 +38,20 @@ class MineralTest {
 //    Laat bijvoorbeeld de ene thread van achter naar voren door de lijst lopen en in de andere thread andersom.
 
     @Test
-    void multiThreadTest() throws UnexpectedValueException {
+    void multiThreadTest() throws UnexpectedValueException, InterruptedException {
         List<Mineral> mineralList = DataCreator.createMinerals();
         Thread thread1 = new Thread(new CaseChanger(mineralList, true));
         Thread thread2 = new Thread(new CaseChanger(mineralList, false));
 
         thread1.start();
         thread2.start();
-
-        for(Mineral mineral: mineralList) {
+        Thread.sleep(1000);
+        for (Mineral mineral : mineralList) {
             System.out.println(mineral.getName());
         }
     }
 
-    class CaseChanger implements Runnable{
+    class CaseChanger implements Runnable {
         List<Mineral> mineralList;
         boolean toUpperCase;
 
@@ -62,8 +62,13 @@ class MineralTest {
 
         @Override
         public void run() {
-            for (Mineral mineral: mineralList) {
-                if(toUpperCase) {
+            for (Mineral mineral : mineralList) {
+                try {
+                    Thread.sleep(50);
+                } catch (Exception e) {
+                }
+
+                if (toUpperCase) {
                     mineral.setName(mineral.getName().toUpperCase());
                 } else {
                     mineral.setName(mineral.getName().toLowerCase());
