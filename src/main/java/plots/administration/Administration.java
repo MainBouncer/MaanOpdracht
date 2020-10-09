@@ -156,5 +156,4 @@ public class Administration {
                 .map(plot -> plot.getAbstractPermit().get())
                 .collect(Collectors.toList());
     }
-
 }

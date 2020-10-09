@@ -2,13 +2,13 @@ package plots.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import plots.model.exception.PermitNotPossibleUncheckedException;
 import plots.model.exception.UnexpectedValueException;
 
 @Getter
-
 public final class Mineral {
-    private final String name;
+    private String name;
     private final long number;
     private final long density;
     private final boolean isRadioActive;
@@ -31,5 +31,9 @@ public final class Mineral {
         this.density = density;
         this.isRadioActive = isRadioActive;
         this.isPermitRequired = isPermitRequired;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

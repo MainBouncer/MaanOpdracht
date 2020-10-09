@@ -3,6 +3,7 @@ package travel.model;
 import org.junit.Test;
 import travel.administration.DataCreator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -13,7 +14,7 @@ public class VehicleTest {
     @Test
     public void testMultipleBookings() {
         List<Vehicle> vehicles = DataCreator.createVehicles();
-        List<Cargo> cargos = DataCreator.createRandomCargoList(70);
+        List<Cargo> cargos = Collections.synchronizedList(DataCreator.createRandomCargoList(70));
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 100; i++) {
