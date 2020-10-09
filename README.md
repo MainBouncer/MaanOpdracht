@@ -75,3 +75,33 @@ Beslis of je een exception ter plekke afvangt of doorgooit.
  
 Kijk naar de bestaande code en zoek uit waar je ExceptionHandling toe kunt voegen.
 Zoek hierbij in de lijst met OCP-exceptions welke het best van toepassing is.
+
+Deel 7:
+Bij het inboeken van het transport van kratten is er plaats voor maximaal 20 kratten per wagon.
+
+Het inboeken kan door meerdere personen tegelijk gedaan worden.
+
+Zorg ervoor dat de wagons niet overboekt worden.
+
+
+Dit is te testen in een unittest waarbij met meerdere threads tegelijk kratten ingeboekt worden.
+
+Eventueel bouw je een wachttijd in bij het inboeken om de kans op dubbel boeken te vergemakkelijken.
+
+
+Maak een lijst met delfstoffen, probeer in de ene thread alle namen van delfstoffen om te zetten naar uppercase en in de andere thread naar lowercase.
+
+Laat deze tegelijk lopen.
+
+Laat bijvoorbeeld de ene thread van achter naar voren door de lijst lopen en in de andere thread andersom.
+
+
+Bonusopdracht:
+**Dit mag in een losstaand project gemaakt worden, het is vooral qua verhaallijn dat het de case raakt***
+De transportservice wordt uitgebreid met een bezorgservice. Op deze manier kunnen de maanperceeleigenaren hun gewassen en delfstoffen versturen. Deze bezorgservice maakt gebruik van de transportservice.
+De bezorgservice werkt met garanties van uiterlijke bezorging, zodat de maanperceeleigenaren exact weten waar ze aan toe zijn. De datum voor uiterlijke bezorging kan precies berekend worden aan de hand van een aantal gegevens. De uiterlijke datum hangt namelijk af van een aantal factoren, zoals de dag waarop de bezorgservice is afgenomen, de afstand tussen ophalen en bezorgen, type product (er zijn verschillende categorieën, zoals gewassen, en dan nog subcategorieën gewassen met en zonder vergunning) en geldende wet en regelgeving. 
+Zo zijn er verschillende types bezorgservice te selecteren, want zoals je je voor kunt stellen moeten tomaten sneller bezorgd en anders vervoerd worden dan goud. De houdbaarheid van de producten moet meegenomen worden in het berekenen van de uiterste bezorgdatum door middel van een in te stellen regel (bijv: producten moeten altijd nog 50% van hun houdbaarheid over hebben op het moment van bezorging tov aanvraagdatum bezorgservice). Sommige producten worden op alle kalenderdagen vervoerd, andere enkel op werkdagen (en dus niet feestdagen en weekenddagen). Houd hierbij rekening met dat er op de maan afwijkende feestdagen kunnen gelden, deze moeten dus nog toegevoegd kunnen worden.
+In sommige gevallen kan de houdbaarheid worden verlengd door het toevoegen van een bepaalde stoffen of het anders verpakken van producten, het anders regelen van het klimaat in het transportmiddel of het verlengen van een vervoersvergunning voor speciale producten). 
+Er gelden andere regels rondom het vervoeren van gewassen en delfstoffen waar vergunningen op zitten, zoals de opiaten en radioactieve stoffen. Deze mogen bijvoorbeeld enkel op werkdagen vervoerd worden en moeten binnen een bepaalde tijd vervoerd worden, terwijl de andere stoffen op alle kalenderdagen vervoerd kunnen worden. Er kan wel een verlengde vervoersvergunning aangevraagd worden om de uiterlijke bezorgdatum uit te stellen. De regels voor opiaten en radioactieve stoffen verschillen ook weer aan de hand van de maanhelften die ieder hun eigen regels hanteren. Aan de hand van een soort beslisboom met rekenmodule moet een uiterlijke bezorgingsdatum getoond worden aan de afnemer van de bezorgservice. 
+De regels die achter de rekenmodule zitten zullen regelmatig veranderen, omdat de algemene regelgeving op de maan nog zeer nieuw is en dit daarom aan de hand van nieuwe inzichten regelmatig aangepast zal worden.
+
