@@ -2,47 +2,45 @@ package travel.model;
 
 import org.junit.Test;
 import travel.administration.DataCreator;
-import travel.enums.CargoType;
-import travel.enums.VehicleType;
 
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-
-class ThreadExample implements Callable<Boolean> {
-    Cargo cargo;
-    Vehicle vehicle;
-
-    public ThreadExample(Cargo cargo, Vehicle vehicle) {
-        this.cargo = cargo;
-        this.vehicle = vehicle;
-    }
-
-    @Override
-    public Boolean call() throws Exception {
-        return vehicle.loadCargo(cargo);
-    }
-}
-
-
-class VehicleTest {
+public class VehicleTest {
     @Test
     public void testMultipleBookings() {
-        Vehicle vehicle = new Vehicle(VehicleType.TRAIN);
-        List<Cargo> cargo = DataCreator.createRandomCargoList(10);
+        List<Vehicle> vehicles = DataCreator.createVehicles();
+        List<Cargo> cargos = DataCreator.createRandomCargoList(70);
 
-        ExecutorService e = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < 100; i++) {
+            executorService.submit(new PersonCallable(cargos, vehicles));
+        }
 
+        executorService.shutdown();
 
-        cargo.forEach(c -> e.submit(new ThreadExample(c, vehicle)));
-        //e.invokeAll();
-
-        e.shutdown();
+        vehicles.forEach(vehicle -> vehicle.getCargoList().forEach(System.out::println));
     }
 
+    class PersonCallable implements Callable<Boolean> {
+        List<Cargo> cargos;
+        List<Vehicle> vehicles;
+
+        public PersonCallable(List<Cargo> cargos, List<Vehicle> vehicles) {
+            this.cargos = cargos;
+            this.vehicles = vehicles;
+        }
+
+        @Override
+        public Boolean call() throws Exception {
+            for (Vehicle vehicle: vehicles) {
+                cargos.removeIf(vehicle::loadCargo);
+            }
+            return true;
+        }
+    }
 
 }
