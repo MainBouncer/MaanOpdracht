@@ -9,7 +9,7 @@ import plots.model.exception.UnexpectedValueException;
 import plots.model.plots.WaterPlot;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 class DataCreatorTest {
@@ -17,7 +17,7 @@ class DataCreatorTest {
     @Test
     void createTransfers_shouldNotCreateIfNotSellable() throws UnexpectedValueException {
         // given
-        WaterPlot plot = WaterPlot.builder().sellable(false).build();
+        WaterPlot plot = WaterPlot.builder().size(1).sellable(false).build();
         List<Owner> owners = new ArrayList<>();
 
         // when
@@ -30,9 +30,10 @@ class DataCreatorTest {
     @Test
     void createTransfers_shouldCreateIfSellable() throws UnexpectedValueException {
         // given
-        WaterPlot plot = WaterPlot.builder().sellable(true).build();
-        Owner owner = Owner.builder().name("owner 1").build();
-        List<Owner> owners = Collections.singletonList(owner);
+        WaterPlot plot = WaterPlot.builder().size(1).sellable(true).build();
+        Owner owner1 = Owner.builder().name("owner 1").build();
+        Owner owner2 = Owner.builder().name("owner 2").build();
+        List<Owner> owners = Arrays.asList(owner1, owner2);
 
         // when
         List<Transfer> resultList = DataCreator.createTransfers(plot, owners);
@@ -41,8 +42,8 @@ class DataCreatorTest {
         assertThat(resultList).isNotEmpty();
         Transfer result = resultList.get(0);
         assertThat(result.getPlot()).isEqualTo(plot);
-        assertThat(result.getNewOwner()).isEqualTo(owner);
-        assertThat(result.getOldOwner()).isEqualTo(owner);
+        assertThat(result.getNewOwner()).isNotNull();
+        assertThat(result.getOldOwner()).isNotNull();
     }
 
 }
