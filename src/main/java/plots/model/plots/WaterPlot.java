@@ -16,7 +16,7 @@ public class WaterPlot extends AbstractPlot {
 
     @Builder
     public WaterPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long waterPerYear) throws UnexpectedValueException {
-        super(size, id, location, border, owner, sellable, Optional.empty());
+        super(size, id, location, border, owner, sellable, null);
         this.waterPerYear = waterPerYear;
     }
 }

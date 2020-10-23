@@ -33,9 +33,23 @@ public final class DataCreator {
     }
 
     public static List<Owner> createOwners() {
+        Owner china = new Owner("China");
+        china.addPermit(CropPermit.builder()
+                .endDate(LocalDate.now().plusYears(1))
+                .crop(Crop.CANNABIS)
+                .operator("John")
+                .build());
+
+        Owner usa = new Owner("USA");
+        usa.addPermit(CropPermit.builder()
+                .endDate(LocalDate.now().plusYears(1))
+                .crop(Crop.MOONSEED)
+                .operator("John")
+                .build());
+
         return Arrays.asList(
-                new Owner("China"),
-                new Owner("USA"),
+                china,
+                usa,
                 new Owner("Russia"),
                 new Owner("Netherlands"),
                 new Owner("Vatican city")
@@ -91,7 +105,9 @@ public final class DataCreator {
             System.out.println("Creating " + upperBound + " " + c.getName() + " farms.");
             IntStream.range(0, upperBound).forEach(i -> {
                 FarmingPlot farm = createFarmingPlot(abstractPlots, borders, owners, random, c);
-                farm.getAbstractPermit().ifPresent(p -> p.setPlot(farm));
+                if (farm.getAbstractPermit() != null) {
+                    farm.getAbstractPermit().setPlot(farm);
+                }
                 abstractPlots.add(farm);
             });
         }
@@ -123,7 +139,9 @@ public final class DataCreator {
             IntStream.range(0, upperBound).forEach(i -> {
                 int id = abstractPlots.size() + 1;
                 MiningPlot plot = getMiningPlot(borders, owners, random, m, id);
-                plot.getAbstractPermit().ifPresent(p -> p.setPlot(plot));
+                if (plot.getAbstractPermit() != null) {
+                    plot.getAbstractPermit().setPlot(plot);
+                }
                 abstractPlots.add(plot);
             });
         }
@@ -135,27 +153,27 @@ public final class DataCreator {
                 getRandomOwner(owners), isSellable(), m, 100, createMineralPermit(m));
     }
 
-    private static Optional<MineralPermit> createMineralPermit(Mineral mineral) {
+    private static MineralPermit createMineralPermit(Mineral mineral) {
         if (mineral.isPermitRequired()) {
-            return Optional.of(MineralPermit.builder()
+            return MineralPermit.builder()
                     .endDate(LocalDate.now().plusYears(1))
                     .mineral(mineral)
                     .operator("Johnny")
-                    .build());
+                    .build();
         } else {
-            return Optional.empty();
+            return null;
         }
     }
 
-    private static Optional<CropPermit> createCropPermit(Crop crop) {
+    private static CropPermit createCropPermit(Crop crop) {
         if (crop.isPermitRequired()) {
-            return Optional.of(CropPermit.builder()
+            return CropPermit.builder()
                     .endDate(LocalDate.now().plusYears(1))
                     .crop(crop)
                     .operator("John")
-                    .build());
+                    .build();
         } else {
-            return Optional.empty();
+            return null;
         }
     }
 

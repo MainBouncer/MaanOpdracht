@@ -8,6 +8,7 @@ import plots.model.Owner;
 import plots.model.Transfer;
 import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
+import plots.model.permit.CropPermit;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
@@ -37,7 +38,6 @@ public class Administration {
         String fileName = "./output/transfers.txt";
         writeObjectToFile(transfers, fileName);
     }
-
 
     private void writeObjectToFile(Object serObj, String filepath) {
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath)) ) {
@@ -170,8 +170,8 @@ public class Administration {
 
     public List<? extends AbstractPermit> getPermits() {
         return abstractPlots.stream()
-                .filter(plot -> plot.getAbstractPermit().isPresent())
-                .map(plot -> plot.getAbstractPermit().get())
+                .filter(plot -> plot.getAbstractPermit() != null)
+                .map(AbstractPlot::getAbstractPermit)
                 .collect(Collectors.toList());
     }
 }

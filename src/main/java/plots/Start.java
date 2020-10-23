@@ -1,6 +1,7 @@
 package plots;
 
 import plots.administration.Administration;
+import plots.administration.MoonPolice;
 import plots.enums.Crop;
 import plots.model.exception.UnexpectedValueException;
 import plots.model.plots.AbstractPlot;
@@ -52,6 +53,9 @@ public class Start {
 
 
         administration.outputToFile();
+
+
+        new MoonPolice();
     }
 
 }

@@ -19,9 +19,9 @@ public abstract class AbstractPlot implements Serializable {
     private Border border;
     private Owner owner;
     private boolean sellable;
-    private Optional<? extends AbstractPermit> abstractPermit;
+    private AbstractPermit abstractPermit;
 
-    public AbstractPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Optional<? extends AbstractPermit> abstractPermit) throws UnexpectedValueException {
+    public AbstractPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, AbstractPermit abstractPermit) throws UnexpectedValueException {
         if (size <= 0) {
             throw new UnexpectedValueException();
         }

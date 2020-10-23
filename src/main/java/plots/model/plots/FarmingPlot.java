@@ -19,11 +19,11 @@ public class FarmingPlot extends AbstractPlot {
     private long cropPerYear;
 
     @Builder
-    public FarmingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Crop crop, long cropPerYear, Optional<CropPermit> permit)
+    public FarmingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Crop crop, long cropPerYear, CropPermit permit)
             throws UnexpectedValueException, PermitRequiredException {
         super(size, id, location, border, owner, sellable, permit);
 
-        if (crop != null && crop.isPermitRequired() && permit.isEmpty()) {
+        if (crop != null && crop.isPermitRequired() && permit == null) {
             throw new PermitRequiredException();
         }
 

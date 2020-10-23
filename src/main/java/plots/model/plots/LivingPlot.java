@@ -17,7 +17,7 @@ public class LivingPlot extends AbstractPlot {
 
     @Builder
     public LivingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, List<Integer> ages) throws UnexpectedValueException {
-        super(size, id, location, border, owner, sellable, Optional.empty());
+        super(size, id, location, border, owner, sellable, null);
         this.ages = ages;
     }
 }

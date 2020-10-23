@@ -19,11 +19,11 @@ public class MiningPlot extends AbstractPlot {
     private long mineralPerYear;
 
     @Builder
-    public MiningPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Mineral mineral, long mineralPerYear, Optional<MineralPermit> permit)
+    public MiningPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, Mineral mineral, long mineralPerYear, MineralPermit permit)
             throws UnexpectedValueException, PermitRequiredException {
         super(size, id, location, border, owner, sellable, permit);
 
-        if (mineral != null && mineral.isPermitRequired() && permit.isEmpty()) {
+        if (mineral != null && mineral.isPermitRequired() && permit == null) {
             throw new PermitRequiredException();
         }
         this.mineral = mineral;

@@ -16,7 +16,7 @@ public class LancingPlot extends AbstractPlot {
 
     @Builder
     public LancingPlot(long size, long id, String location, Border border, Owner owner, boolean sellable, long rocketSize) throws UnexpectedValueException {
-        super(size, id, location, border, owner, sellable, Optional.empty());
+        super(size, id, location, border, owner, sellable, null);
         this.rocketSize = rocketSize;
     }
 }

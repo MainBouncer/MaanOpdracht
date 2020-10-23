@@ -6,8 +6,10 @@ import lombok.Setter;
 import plots.model.exception.PermitNotPossibleUncheckedException;
 import plots.model.exception.UnexpectedValueException;
 
+import java.io.Serializable;
+
 @Getter
-public final class Mineral {
+public final class Mineral implements Serializable {
     private String name;
     private final long number;
     private final long density;

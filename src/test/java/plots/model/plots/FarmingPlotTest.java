@@ -36,7 +36,7 @@ class FarmingPlotTest {
                 .forEach(crop -> assertThrows(PermitRequiredException.class, () -> FarmingPlot.builder()
                         .size(1)
                         .crop(crop)
-                        .permit(Optional.empty())
+                        .permit(null)
                         .build()));
     }
 
@@ -52,7 +52,7 @@ class FarmingPlotTest {
         FarmingPlot.builder()
                 .size(1)
                 .crop(crop)
-                .permit(Optional.of(CropPermit.builder().build()))
+                .permit(CropPermit.builder().build())
                 .build();
     }
 
