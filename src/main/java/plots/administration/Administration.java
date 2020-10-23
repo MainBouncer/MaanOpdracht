@@ -14,6 +14,7 @@ import plots.model.plots.LivingPlot;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Getter
-public class Administration {
+public class Administration implements Serializable {
 
     private static Administration INSTANCE;
 
