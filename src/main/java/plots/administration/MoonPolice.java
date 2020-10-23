@@ -10,30 +10,56 @@ import plots.model.plots.FarmingPlot;
 import plots.model.plots.MiningPlot;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MoonPolice {
 
+    private static final String BASE_PATH = "./output";
+    private static final String INPUT_PATH = BASE_PATH + "/transfers.txt";
+    private static final String OUTPUT_PATH = BASE_PATH + "/illegaltransfers.txt";
+
     public MoonPolice() {
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("./output/transfers.txt"))) {
-            List<Transfer> transfers = (List<Transfer>) objectInputStream.readObject();
+        List<Transfer> transfers = readTransfers();
+        System.out.println(transfers);
 
-            System.out.println(transfers);
+        List<Transfer> illegalTransfers = getIllegalTransfers(transfers);
 
-            List<Transfer> illegalTransfers = transfers.stream()
-                    .filter(transfer -> transfer.getPlot().getAbstractPermit() != null)
-                    .filter(transfer -> !newOwnerHasRequiredPermit(transfer))
-                    .collect(Collectors.toList());
-            List<String> bulletins = illegalTransfers.stream()
-                    .map(this::createBulletin)
-                    .collect(Collectors.toList());
+        illegalTransfers.stream()
+                .map(this::createBulletin)
+                .forEach(System.out::println);
 
-            bulletins.forEach(System.out::println);
+        saveIllegalTransfers(illegalTransfers);
+    }
+
+    private List<Transfer> getIllegalTransfers(List<Transfer> transfers) {
+        return transfers.stream()
+                .filter(transfer -> transfer.getPlot().getAbstractPermit() != null)
+                .filter(transfer -> !newOwnerHasRequiredPermit(transfer))
+                .collect(Collectors.toList());
+    }
+
+    private List<Transfer> readTransfers() {
+        List<Transfer> transfers;
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(INPUT_PATH))) {
+            transfers = (List<Transfer>) objectInputStream.readObject();
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+        return transfers;
+    }
+
+    private void saveIllegalTransfers(List<Transfer> illegalTransfers) {
+        try (ObjectOutputStream objectInputStream = new ObjectOutputStream(new FileOutputStream(OUTPUT_PATH))) {
+            objectInputStream.writeObject(illegalTransfers);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 
