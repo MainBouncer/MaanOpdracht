@@ -1,11 +1,13 @@
 package plots.model.permit;
 
 import lombok.Builder;
+import lombok.Getter;
 import plots.enums.Crop;
 import plots.model.plots.AbstractPlot;
 
 import java.time.LocalDate;
 
+@Getter
 public class CropPermit extends AbstractPermit {
     private Crop crop;
 

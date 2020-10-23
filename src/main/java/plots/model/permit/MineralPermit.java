@@ -1,11 +1,13 @@
 package plots.model.permit;
 
 import lombok.Builder;
+import lombok.Getter;
 import plots.model.Mineral;
 import plots.model.plots.AbstractPlot;
 
 import java.time.LocalDate;
 
+@Getter
 public class MineralPermit extends AbstractPermit {
     private Mineral mineral;
 
