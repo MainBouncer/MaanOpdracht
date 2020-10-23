@@ -49,6 +49,9 @@ public class Start {
         );
 
         administration.getBestFarmingPlot();
+
+
+        administration.outputToFile();
     }
 
 }

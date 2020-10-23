@@ -131,7 +131,7 @@ public final class DataCreator {
 
     @SneakyThrows
     private static MiningPlot getMiningPlot(List<Border> borders, List<Owner> owners, Random random, Mineral m, int id) {
-        return new MiningPlot(random.nextInt(1000), id, "Mining", getRandomBorder(borders),
+        return new MiningPlot(random.nextInt(999) +1, id, "Mining", getRandomBorder(borders),
                 getRandomOwner(owners), isSellable(), m, 100, createMineralPermit(m));
     }
 

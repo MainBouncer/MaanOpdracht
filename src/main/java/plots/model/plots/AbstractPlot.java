@@ -7,11 +7,12 @@ import plots.model.Owner;
 import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 @Getter
 @Setter
-public abstract class AbstractPlot {
+public abstract class AbstractPlot implements Serializable {
     private long size;
     private long id;
     private String location;

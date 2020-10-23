@@ -12,6 +12,8 @@ import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +31,22 @@ public class Administration {
     private List<Border> borders;
     private List<Transfer> transfers;
     private List<Mineral> minerals;
+
+
+    public void outputToFile() {
+        String fileName = "./output/transfers.txt";
+        writeObjectToFile(transfers, fileName);
+    }
+
+
+    private void writeObjectToFile(Object serObj, String filepath) {
+        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath)) ) {
+            objectOut.writeObject(serObj);
+            System.out.println("The Object  was succesfully written to a file");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private Administration() throws UnexpectedValueException {
         owners = DataCreator.createOwners();

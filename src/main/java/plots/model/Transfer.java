@@ -6,11 +6,12 @@ import lombok.Setter;
 import plots.model.exception.IncorrectTransferException;
 import plots.model.plots.AbstractPlot;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
-public class Transfer {
+public class Transfer implements Serializable {
 
     private long id;
     private Owner newOwner;

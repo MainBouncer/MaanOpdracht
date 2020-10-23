@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import plots.model.plots.AbstractPlot;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Setter
 @Getter
-public class AbstractPermit {
+public class AbstractPermit implements Serializable {
     private AbstractPlot plot;
     private LocalDate startDate;
     private LocalDate endDate;
