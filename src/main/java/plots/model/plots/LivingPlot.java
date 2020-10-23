@@ -8,7 +8,6 @@ import plots.model.Owner;
 import plots.model.exception.UnexpectedValueException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Getter
 @Setter

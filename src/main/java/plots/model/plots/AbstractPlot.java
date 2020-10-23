@@ -8,7 +8,6 @@ import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 @Getter
 @Setter

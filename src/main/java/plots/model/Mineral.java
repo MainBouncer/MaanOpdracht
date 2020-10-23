@@ -2,7 +2,6 @@ package plots.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import plots.model.exception.PermitNotPossibleUncheckedException;
 import plots.model.exception.UnexpectedValueException;
 

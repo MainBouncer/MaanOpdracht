@@ -10,8 +10,6 @@ import plots.model.exception.PermitRequiredException;
 import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.MineralPermit;
 
-import java.util.Optional;
-
 @Getter
 @Setter
 public class MiningPlot extends AbstractPlot {

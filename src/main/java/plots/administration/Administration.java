@@ -8,7 +8,6 @@ import plots.model.Owner;
 import plots.model.Transfer;
 import plots.model.exception.UnexpectedValueException;
 import plots.model.permit.AbstractPermit;
-import plots.model.permit.CropPermit;
 import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
@@ -40,7 +39,7 @@ public class Administration {
     }
 
     private void writeObjectToFile(Object serObj, String filepath) {
-        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath)) ) {
+        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath))) {
             objectOut.writeObject(serObj);
             System.out.println("The Object  was succesfully written to a file");
         } catch (Exception ex) {

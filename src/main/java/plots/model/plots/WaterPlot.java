@@ -7,8 +7,6 @@ import plots.model.Border;
 import plots.model.Owner;
 import plots.model.exception.UnexpectedValueException;
 
-import java.util.Optional;
-
 @Getter
 @Setter
 public class WaterPlot extends AbstractPlot {
