@@ -1,5 +1,6 @@
 package plots.administration;
 
+import misc.FileUtils;
 import plots.model.Owner;
 import plots.model.Transfer;
 
@@ -13,9 +14,16 @@ import java.util.List;
 public class DocumentCreator {
 
     public DocumentCreator(List<Transfer> transfers) {
+        String ownerDirectory = "./output/owners";
+        try {
+            FileUtils.deleteStructure(Path.of(ownerDirectory));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         transfers.forEach(transfer -> {
             Owner owner = transfer.getNewOwner();
-            Path ownerPath = Path.of("./output/owners", owner.getName());
+            Path ownerPath = Path.of(ownerDirectory, owner.getName());
             if (!Files.exists(ownerPath)) {
                 try {
                     Files.createDirectories(ownerPath);
