@@ -1,6 +1,7 @@
 package plots.administration;
 
 import lombok.Getter;
+import misc.FileUtils;
 import plots.enums.Crop;
 import plots.model.Border;
 import plots.model.Mineral;
@@ -12,8 +13,6 @@ import plots.model.plots.AbstractPlot;
 import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,17 +34,8 @@ public class Administration implements Serializable {
 
     public void outputToFiles() {
         String baseOutputPath = "./output";
-        writeObjectToFile(this, baseOutputPath + "/administration.txt");
-        writeObjectToFile(transfers, baseOutputPath + "/transfers.txt");
-    }
-
-    private void writeObjectToFile(Object serObj, String filepath) {
-        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath))) {
-            objectOut.writeObject(serObj);
-            System.out.println("The Object  was successfully written to a file");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        FileUtils.writeObjectToFile(this, baseOutputPath + "/administration.txt");
+        FileUtils.writeObjectToFile(transfers, baseOutputPath + "/transfers.txt");
     }
 
     private Administration() throws UnexpectedValueException {
