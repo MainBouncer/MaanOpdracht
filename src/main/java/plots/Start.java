@@ -72,10 +72,13 @@ public class Start {
 
         administration.getBestFarmingPlot();
 
-        administration.outputToFiles();
-
         new MoonPolice();
 
+        if (usePreviousAdministration) {
+            return;
+        }
+
+        administration.outputToFiles();
         new DocumentCreator(administration.getTransfers());
 
     }
