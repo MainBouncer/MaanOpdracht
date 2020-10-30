@@ -21,14 +21,18 @@ public class DocumentCreator {
                     Files.createDirectories(ownerPath);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
 
             Path transferPath = Path.of(ownerPath.toString(), transfer.toString());
             try {
-                Files.createFile(transferPath);
+                if (!Files.exists(transferPath)) {
+                    Files.createFile(transferPath);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+                throw new RuntimeException(e);
             }
 
             try (ObjectOutputStream objectInputStream =
