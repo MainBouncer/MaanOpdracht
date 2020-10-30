@@ -33,16 +33,16 @@ public class Administration implements Serializable {
     private List<Transfer> transfers;
     private List<Mineral> minerals;
 
-
-    public void outputToFile() {
-        String fileName = "./output/transfers.txt";
-        writeObjectToFile(transfers, fileName);
+    public void outputToFiles() {
+        String baseOutputPath = "./output";
+        writeObjectToFile(this, baseOutputPath + "/administration.txt");
+        writeObjectToFile(transfers, baseOutputPath + "/transfers.txt");
     }
 
     private void writeObjectToFile(Object serObj, String filepath) {
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath))) {
             objectOut.writeObject(serObj);
-            System.out.println("The Object  was succesfully written to a file");
+            System.out.println("The Object  was successfully written to a file");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

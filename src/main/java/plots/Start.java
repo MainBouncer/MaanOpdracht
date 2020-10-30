@@ -71,7 +71,7 @@ public class Start {
 
         administration.getBestFarmingPlot();
 
-        administration.outputToFile();
+        administration.outputToFiles();
 
         new MoonPolice();
 
