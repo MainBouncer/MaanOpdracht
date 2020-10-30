@@ -11,6 +11,8 @@ import plots.model.plots.FarmingPlot;
 import plots.model.plots.LivingPlot;
 import resources.PrintStatements;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
@@ -20,6 +22,10 @@ import java.util.ResourceBundle;
 public class Start {
 
     public static void main(String[] args) throws UnexpectedValueException {
+
+        ConsoleRunner consoleRunner = new ConsoleRunner();
+        consoleRunner.askForPreviousAdministration();
+
         Administration administration = Administration.getInstance();
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle(PrintStatements.class.getName(), new Locale("nl"));
@@ -53,17 +59,11 @@ public class Start {
 
         administration.getBestFarmingPlot();
 
-
         administration.outputToFile();
-
 
         new MoonPolice();
 
         new DocumentCreator(administration.getTransfers());
-//
-//
-//        ConsoleRunner consoleRunner = new ConsoleRunner();
-//        consoleRunner.openConsole();
 
     }
 

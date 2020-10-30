@@ -32,11 +32,6 @@ class MineralTest {
         );
     }
 
-
-//    Maak een lijst met delfstoffen, probeer in de ene thread alle namen van delfstoffen om te zetten naar uppercase en in de andere thread naar lowercase.
-//    Laat deze tegelijk lopen.
-//    Laat bijvoorbeeld de ene thread van achter naar voren door de lijst lopen en in de andere thread andersom.
-
     @Test
     void multiThreadTest() throws UnexpectedValueException, InterruptedException {
         List<Mineral> mineralList = DataCreator.createMinerals();
