@@ -1,5 +1,6 @@
 package plots;
 
+import misc.FileUtils;
 import plots.administration.Administration;
 import plots.administration.ConsoleRunner;
 import plots.administration.DocumentCreator;
@@ -26,7 +27,7 @@ public class Start {
         Administration administration;
 
         if (usePreviousAdministration) {
-            administration = readSessionData();
+            administration = FileUtils.readObject(Administration.class, "./output/administration.txt");
         } else {
             administration = Administration.getInstance();
         }
@@ -77,10 +78,6 @@ public class Start {
 
         new DocumentCreator(administration.getTransfers());
 
-    }
-
-    private static Administration readSessionData() {
-        return null;
     }
 
 }

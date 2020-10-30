@@ -34,7 +34,7 @@ public class Administration implements Serializable {
 
     public void outputToFiles() {
         String baseOutputPath = "./output";
-        FileUtils.writeObjectToFile(this, baseOutputPath + "/administration.txt");
+        FileUtils.writeObjectToFile(INSTANCE, baseOutputPath + "/administration.txt");
         FileUtils.writeObjectToFile(transfers, baseOutputPath + "/transfers.txt");
     }
 

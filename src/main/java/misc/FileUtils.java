@@ -1,8 +1,6 @@
 package misc;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,12 +28,24 @@ public class FileUtils {
         });
     }
 
+    public static <T> T readObject(Class<T> expectedClass, String filepath) {
+        try (ObjectInputStream objectOut = new ObjectInputStream(new FileInputStream(filepath))) {
+            T object = (T) objectOut.readObject();
+            System.out.println("The object of type " + expectedClass + " was successfully read from file");
+            return object;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+    }
+
     public static void writeObjectToFile(Object serObj, String filepath) {
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath))) {
             objectOut.writeObject(serObj);
             System.out.println("The Object  was successfully written to a file");
         } catch (Exception ex) {
             ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 }
