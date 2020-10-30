@@ -42,7 +42,7 @@ public class FileUtils {
     public static void writeObjectToFile(Object serObj, String filepath) {
         try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filepath))) {
             objectOut.writeObject(serObj);
-            System.out.println("The Object  was successfully written to a file");
+            System.out.println("The Object " + serObj.getClass() + " was successfully written to a file");
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
