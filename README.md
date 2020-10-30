@@ -136,3 +136,11 @@ Ask the user for input on this administration
 Upon ending the console app, write it to a file
 
 Open it when the user later wants to continue a previous session
+
+
+
+Opdracht 9 (NIO.2)
+
+Create a separate folder for every unique person (unique name is fine) in which you store all movements of that person
+
+Every shipping of goods should be stored in a folder of the owner
