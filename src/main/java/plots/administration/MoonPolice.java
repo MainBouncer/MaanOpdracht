@@ -31,6 +31,7 @@ public class MoonPolice {
         illegalTransfers.stream()
                 .map(this::createBulletin)
                 .forEach(System.out::println);
+        System.out.println("Of the " + transfers.size() + " transfers, " + illegalTransfers.size() + " were illegal.");
 
         saveIllegalTransfers(illegalTransfers);
     }
