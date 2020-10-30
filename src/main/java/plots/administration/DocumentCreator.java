@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 public class DocumentCreator {
@@ -16,7 +15,7 @@ public class DocumentCreator {
     public DocumentCreator(List<Transfer> transfers) {
         transfers.forEach(transfer -> {
             Owner owner = transfer.getNewOwner();
-            Path ownerPath = Paths.get("../output/owners", owner.getName());
+            Path ownerPath = Path.of("./output/owners", owner.getName());
             if (!Files.exists(ownerPath)) {
                 try {
                     Files.createDirectories(ownerPath);
@@ -25,15 +24,15 @@ public class DocumentCreator {
                 }
             }
 
-            Path transferPath = Paths.get(ownerPath.toString(), transfer.toString());
-
+            Path transferPath = Path.of(ownerPath.toString(), transfer.toString());
             try {
                 Files.createFile(transferPath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            try (ObjectOutputStream objectInputStream = new ObjectOutputStream(new FileOutputStream(transferPath.toFile()))) {
+            try (ObjectOutputStream objectInputStream =
+                         new ObjectOutputStream(new FileOutputStream(transferPath.toFile()))) {
                 objectInputStream.writeObject(transfer);
             } catch (Exception ex) {
                 ex.printStackTrace();
